@@ -3,9 +3,6 @@ import { X } from "lucide-react";
 
 const problems = [
   {
-    text: "Iubești cinele târzii și vinul bun, dar urăști consecințele lor.",
-  },
-  {
     text: "Nu ești dispus să renunți la gust doar ca să slăbești.",
   },
   {
