@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
 import { motion } from "framer-motion";
-import videoThumbnail from "@/assets/video-thumbnail.jpg";
 
 const HeroSection = () => {
   const scrollToSection = (id: string) => {
@@ -59,21 +57,16 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative w-full aspect-video max-w-3xl mx-auto bg-card border border-border rounded-lg shadow-2xl overflow-hidden group cursor-pointer mb-12 hover:border-primary/50 transition-colors duration-300"
+          className="relative w-full max-w-3xl mx-auto bg-card border border-border rounded-lg shadow-2xl overflow-hidden mb-12 hover:border-primary/50 transition-colors duration-300"
         >
-          <img
-            src={videoThumbnail}
-            alt="Protocol Overview Video"
-            className="w-full h-full object-cover opacity-60"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary/30 transition duration-300 backdrop-blur-sm">
-              <Play className="w-8 h-8 text-primary ml-1" fill="currentColor" />
-            </div>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-richblack/80 via-transparent to-transparent" />
-          <div className="absolute bottom-4 left-4 text-foreground font-serif text-sm bg-richblack/50 px-3 py-1 rounded backdrop-blur-sm">
-            <span className="text-primary">▶</span> Watch the Protocol Overview
+          <div className="relative pt-[56.25%]">
+            <iframe
+              src="https://player.mediadelivery.net/embed/551605/72384f2f-7a62-4fa7-bdad-feb6d8d2d767?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
+              loading="lazy"
+              className="absolute top-0 left-0 w-full h-full border-0"
+              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </motion.div>
 
