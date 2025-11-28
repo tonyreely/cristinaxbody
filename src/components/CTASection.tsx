@@ -15,7 +15,7 @@ const CTASection = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-serif text-foreground mb-6"
         >
-          Your New Body Awaits
+          20 de Minute care îți Definesc Viitorul.
         </motion.h2>
 
         <motion.p
@@ -25,9 +25,8 @@ const CTASection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-muted-foreground mb-10 text-lg"
         >
-          Stop waiting for the "perfect time." It doesn't exist. <br />
-          There is only today. Join the elite few who have mastered their
-          physique without losing their lifestyle.
+          Timpul este singura resursă pe care nu o poți recupera. Cu fiecare
+          săptămână în care amâni, distanța dintre tine și corpul dorit crește.
         </motion.p>
 
         <motion.div
