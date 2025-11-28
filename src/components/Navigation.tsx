@@ -52,7 +52,7 @@ const Navigation = () => {
               size="default"
               onClick={() => scrollToSection("consultation")}
             >
-              Apply for Access
+              Vreau să slăbesc inteligent
             </Button>
           </div>
 
@@ -76,7 +76,7 @@ const Navigation = () => {
               className="w-full"
               onClick={() => scrollToSection("consultation")}
             >
-              Apply for Access
+              Vreau să slăbesc inteligent
             </Button>
           </div>
         )}
