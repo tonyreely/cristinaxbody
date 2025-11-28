@@ -1,0 +1,101 @@
+import { Button } from "@/components/ui/button";
+import { Play } from "lucide-react";
+import { motion } from "framer-motion";
+import videoThumbnail from "@/assets/video-thumbnail.jpg";
+
+const HeroSection = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <header className="relative pt-32 pb-16 md:pt-48 md:pb-32 overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gold-600 rounded-full blur-[128px]" />
+        <div className="absolute top-40 -left-40 w-72 h-72 bg-muted rounded-full blur-[128px]" />
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-gold-400 font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4 animate-pulse-gold"
+        >
+          The Gourmet Protocol
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground mb-6 leading-tight"
+        >
+          Sculpt Your Body. <br />
+          <span className="gold-gradient-text italic">Savor the Lifestyle.</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
+        >
+          How to drop 20lbs in 90 days while enjoying fine dining, wine, and the
+          foods you love. No starvation. No tupperware containers. Just strategy.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="relative w-full aspect-video max-w-3xl mx-auto bg-card border border-border rounded-lg shadow-2xl overflow-hidden group cursor-pointer mb-12 hover:border-primary/50 transition-colors duration-300"
+        >
+          <img
+            src={videoThumbnail}
+            alt="Protocol Overview Video"
+            className="w-full h-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary/30 transition duration-300 backdrop-blur-sm">
+              <Play className="w-8 h-8 text-primary ml-1" fill="currentColor" />
+            </div>
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-richblack/80 via-transparent to-transparent" />
+          <div className="absolute bottom-4 left-4 text-foreground font-serif text-sm bg-richblack/50 px-3 py-1 rounded backdrop-blur-sm">
+            <span className="text-primary">▶</span> Watch the Protocol Overview
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <Button
+            variant="hero"
+            size="xl"
+            onClick={() => scrollToSection("consultation")}
+          >
+            Schedule Your Strategy Call
+          </Button>
+          <p className="mt-4 text-muted-foreground text-sm">
+            Limited spots available for October cohort.
+          </p>
+        </motion.div>
+      </div>
+    </header>
+  );
+};
+
+export default HeroSection;
