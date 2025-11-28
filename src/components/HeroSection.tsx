@@ -87,7 +87,7 @@ const HeroSection = () => {
             size="xl"
             onClick={() => scrollToSection("consultation")}
           >
-            Schedule Your Strategy Call
+            Vreau să slăbesc inteligent
           </Button>
           <p className="mt-4 text-muted-foreground text-sm">
             Limited spots available for October cohort.
