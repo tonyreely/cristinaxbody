@@ -30,38 +30,24 @@ const FounderSection = () => {
           className="w-full md:w-1/2"
         >
           <h3 className="text-primary font-bold tracking-widest text-sm mb-2 uppercase">
-            The Founder
+            Fondatoarea
           </h3>
           <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
-            From Michelin Kitchens to{" "}
-            <span className="italic text-primary">Peak Performance</span>
+            De la Greutate la{" "}
+            <span className="italic text-primary">Transformare</span>
           </h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              I'm <strong className="text-foreground">Cristina</strong>. Years
-              ago, I was working in one of the top restaurants. I was surrounded
-              by incredible food, yet I was overweight, lethargic, and ashamed.
+              Nu m-am născut cu un metabolism rapid. Dimpotrivă. Copilăria mea a fost marcată de lupta constantă cu greutatea și de glumele celor din jur. Am crescut crezând că „a fi în formă" este un privilegiu rezervat altora, nu mie.
             </p>
             <p>
-              I thought the only way out was to suffer. To eat bland food. To
-              say "no" to social events.
+              <strong className="text-foreground">Am refuzat să accept asta. Am căutat soluții, nu scuze.</strong>
             </p>
             <p>
-              I tried every diet. I lost weight, but I lost my joy for life with
-              it. And the moment I returned to my normal life, the weight came
-              back—with interest.
+              Totul s-a schimbat când am devenit clientă EMS. Rezultatele au fost șocante, corpul meu se transforma văzând cu ochii, fără să îmi sacrific tot timpul liber în sală. Am realizat că problema nu era corpul meu, ci metodele ineficiente pe care le folosisem.
             </p>
             <p>
-              <strong className="text-foreground">The Epiphany:</strong> I
-              realized that any protocol requiring me to hate my life was
-              destined to fail. I needed a system that treated food as a luxury,
-              not an enemy.
-            </p>
-            <p>
-              I spent 5 years developing the{" "}
-              <span className="text-primary">xBody Protocol</span>. I lost 25kg
-              while drinking Merlot and eating Risotto. Now, I help
-              high-performers do the same.
+              Am fondat <span className="text-primary">Body Tone</span> dintr-o convingere simplă: nimeni nu ar trebui să sufere pentru a arăta bine. Am transformat propria mea luptă într-un protocol de succes, pentru ca tu să ai acces direct la soluția care funcționează, fără să treci prin anii de încercări prin care am trecut eu.
             </p>
           </div>
         </motion.div>
