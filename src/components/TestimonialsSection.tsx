@@ -23,10 +23,8 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: "1,200+", label: "Clients Transformed" },
-  { value: "250+", label: "Gourmet Recipes" },
-  { value: "100%", label: "Satisfaction" },
-  { value: "Global", label: "Community" },
+  { value: "800+", label: "Clienți Transformați" },
+  { value: "100%", label: "Satisfacție" },
 ];
 
 const TestimonialsSection = () => {
