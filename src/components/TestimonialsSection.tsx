@@ -4,21 +4,21 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "I work in finance. Late dinners and drinks are part of the job. Cristina showed me how to navigate client dinners without looking like I was on a diet. Down 18kg and my suits have never fit better.",
-    name: "Michael T.",
-    role: "Investment Banker",
+      "Lucrez în management, iar prânzurile de afaceri sunt obligatorii. Cristina nu mi-a 'interzis' restaurantul, ci m-a învățat cum să navighez meniul strategic, fără să par că sunt la dietă în fața clienților. Am dat jos 18 kg, iar costumele mele nu s-au așezat niciodată mai bine. Cel mai bun ROI al timpului meu.",
+    name: "Andrei M.",
+    role: "Antreprenor & Investitor",
   },
   {
     quote:
-      "I thought menopause meant I was destined to be overweight. The xBody protocol proved me wrong. I eat chocolate every single day and I have visible abs for the first time in 20 years.",
-    name: "Sarah J.",
-    role: "Interior Designer",
+      "Credeam că 'metabolismul lent' de după 40 de ani este o sentință definitivă. Protocolul Body Tone mi-a demonstrat contrariul. Nu am renunțat la ciocolată (o mănânc zilnic, dar calculat) și am abdomenul plat pentru prima dată în ultimii 15 ani. Nu e magie, e pură biologie.",
+    name: "Elena S.",
+    role: "Designer de Interior",
   },
   {
     quote:
-      "Simple, effective, and surprisingly luxurious. The recipes alone are worth the price of admission. It feels like a culinary course that accidentally gets you ripped.",
-    name: "David R.",
-    role: "Architect",
+      "Simplu, eficient și surprinzător de exclusivist. Faptul că sunt singur în studio, fără aglomerație, schimbă totul. Planul alimentar se simte ca un stil de viață, nu ca o pedeapsă. Mă simt ca și cum aș trișa sistemul: efort minim, rezultate de atlet.",
+    name: "Radu D.",
+    role: "Senior Software Developer",
   },
 ];
 
@@ -40,7 +40,7 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-serif text-center text-foreground mb-16"
         >
-          Results Speak <span className="text-primary">Louder</span>
+          Rezultatele Vorbesc <span className="text-primary">Mai Tare Decât Promisiunile</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-8">
