@@ -3,22 +3,19 @@ import { X } from "lucide-react";
 
 const problems = [
   {
-    text: "You avoid tailored suits or evening dresses because you feel uncomfortable in your own skin.",
+    text: "Iubești cinele târzii și vinul bun, dar urăști consecințele lor.",
   },
   {
-    text: 'You believe "getting fit" requires eating dry chicken and broccoli out of plastic containers.',
+    text: "Nu ești dispus să renunți la gust doar ca să slăbești.",
   },
   {
-    text: "You've tried restrictive diets (Keto, Fasting) only to rebound harder when you inevitably dine out.",
+    text: "Te simți expus și judecat în aglomerația sălilor publice.",
   },
   {
-    text: "You are successful in business but feel like a failure when you look in the mirror.",
+    text: "Ai obosit să o iei de la capăt cu dieta în fiecare luni.",
   },
   {
-    text: "You fear that aging means a slow, inevitable decline in energy and physique.",
-  },
-  {
-    text: "You think you don't have time for 2-hour gym sessions (and you're right, you don't).",
+    text: "Vrei rezultatul unui atlet, dar fără să sacrifici timpul cu familia.",
   },
 ];
 
