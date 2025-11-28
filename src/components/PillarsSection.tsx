@@ -3,38 +3,34 @@ import { motion } from "framer-motion";
 const pillars = [
   {
     number: "I",
-    title: "Metabolic Luxury",
-    subtitle: 'Why you don\'t need to eat "Clean"',
+    title: "Hiper-Activare Musculară",
+    subtitle: "Eficiență biologică, nu magie",
     paragraphs: [
-      "The fitness industry lies to you. They say sugar makes you fat. They say pasta is the enemy. False. Fat loss is a mathematical equation of thermodynamics, not a moral judgment of food purity.",
-      'We calculate your "Luxury Budget" (calories). As long as you stay within this budget, you can spend it on steak, wine, or chocolate. We teach you how to bank calories for a big dinner so you never have to be "that person" ordering a salad at a steakhouse.',
+      "La sala clasică, creierul tău poate accesa doar 40% din fibrele musculare. Tehnologia EMS schimbă regula jocului: activăm simultan 90% din musculatură, inclusiv straturile profunde imposibil de atins prin exerciții convenționale.",
     ],
   },
   {
     number: "II",
-    title: "Protein Anchoring",
-    subtitle: "The secret to staying full",
+    title: "Compresia Timpului",
+    subtitle: "20 de Minute. O dată pe săptămână.",
     paragraphs: [
-      "Hunger is the enemy of consistency. The solution isn't willpower; it's biology. By anchoring every day with high-quality protein, you suppress the hunger hormone (ghrelin).",
-      "We provide gourmet recipes—Seared Scallops, Beef Wellington, Truffle Chicken—that hit your protein targets while tasting like a 5-star meal.",
+      "Nu ai nevoie să locuiești în sală pentru a arăta bine. Metoda noastră comprimă 90 de minute de antrenament intens în doar 20 de minute. Rezultatul? Un metabolism accelerat care arde grăsimi timp de 48 de ore după ce ai plecat.",
     ],
   },
   {
     number: "III",
-    title: "Minimal Effective Dose",
-    subtitle: "30 Minutes, 3 Times a Week",
+    title: "Nutriție Strategică",
+    subtitle: "Carburant, nu privare",
     paragraphs: [
-      "You are not a bodybuilder. You are a busy professional. You do not need to live in the gym.",
-      "Our training protocol focuses on high-intensity resistance training. 3 sessions a week. 30-40 minutes. We focus on compound movements that signal your body to hold onto muscle while the fat melts off.",
+      "Dieta nu trebuie să fie o pedeapsă. Îți construim un Plan Alimentar Personalizat care susține efortul metabolic, nu înfometarea. Primești harta exactă a ceea ce trebuie să mănânci pentru a sculpta corpul, fără să renunți la gust.",
     ],
   },
   {
     number: "IV",
-    title: "Lifestyle Integration",
-    subtitle: "The Exit Strategy",
+    title: "Intimitate Totală",
+    subtitle: "Sanctuarul tău Privat",
     paragraphs: [
-      "Most diets fail because they don't have an exit strategy. Once you hit your goal weight, what then?",
-      'We teach you the "Maintenance Protocol." How to transition from fat loss to lifestyle management so you stay lean for decades, not just weeks. This is the last transformation you will ever need.',
+      "Spune adio sălilor aglomerate și privirilor indiscrete. Studiourile noastre funcționează în regim privat. Ești doar tu și antrenorul tău, într-un mediu exclusivist unde focusul este 100% pe transformarea ta.",
     ],
   },
 ];
@@ -51,8 +47,8 @@ const PillarsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-4">
-            The <span className="text-primary">4 Pillars</span> of Gourmet Fat
-            Loss
+            Cei <span className="text-primary">4 Piloni</span> ai Protocolului
+            Body Tone
           </h2>
           <div className="h-1 w-24 bg-primary mx-auto" />
         </motion.div>
@@ -67,7 +63,7 @@ const PillarsSection = () => {
             className="mb-16 border-l-2 border-primary pl-6 md:pl-10"
           >
             <h3 className="text-2xl font-serif text-foreground mb-2">
-              Pillar {pillar.number}: {pillar.title}
+              Pilonul {pillar.number}: {pillar.title}
             </h3>
             <h4 className="text-gold-400 font-bold text-sm uppercase mb-4">
               {pillar.subtitle}
