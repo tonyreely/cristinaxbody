@@ -76,7 +76,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 text-center border-t border-border pt-10">
+        <div className="flex justify-center gap-16 md:gap-24 mt-20 text-center border-t border-border pt-10">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
