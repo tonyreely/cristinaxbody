@@ -33,8 +33,8 @@ const FounderSection = () => {
             Fondatoarea
           </h3>
           <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
-            De la Greutate la{" "}
-            <span className="italic text-primary">Transformare</span>
+            Nu m-am Născut Atletică.{" "}
+            <span className="italic text-primary">M-am Construit Inteligent.</span>
           </h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
