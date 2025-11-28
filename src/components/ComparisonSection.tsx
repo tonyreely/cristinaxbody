@@ -28,7 +28,7 @@ const ComparisonSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center text-3xl font-serif text-foreground mb-12"
         >
-          The Cost of Inaction
+          De Ce Să Alegi Calea Grea?
         </motion.h2>
 
         <motion.div
