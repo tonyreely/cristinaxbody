@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import founderImage from "@/assets/founder-portrait.jpg";
+import founderImage from "@/assets/founder-transformation.png";
 
 const FounderSection = () => {
   return (
@@ -16,8 +16,8 @@ const FounderSection = () => {
             <div className="absolute -inset-4 border border-primary/30 rounded-sm" />
             <img
               src={founderImage}
-              alt="Cristina - xBody Founder"
-              className="relative z-10 w-full h-auto grayscale contrast-125 rounded-sm shadow-2xl"
+              alt="Cristina - Body Tone Founder Transformation"
+              className="relative z-10 w-full h-auto rounded-sm shadow-2xl"
             />
           </div>
         </motion.div>
