@@ -2,19 +2,19 @@ import { motion } from "framer-motion";
 import { X, Check } from "lucide-react";
 
 const oldWay = [
-  "Bland, boiled food",
-  "Expensive Personal Trainer ($800/mo)",
-  "Confusing supplements ($200/mo)",
-  "Hours of boring cardio",
-  "Rebound weight gain",
+  "Ineficiență: 90 de minute de efort pentru a activa doar 40% din mușchi.",
+  "Pierdere de Timp: Ore întregi pierdute în trafic, vestiare și așteptând la aparate.",
+  "Haos Nutrițional: Diete \"după ureche\" sau costuri extra pentru nutriționist separat.",
+  "Mediu Public: Aglomerație, zgomot și senzația inconfortabilă de a fi privit.",
+  "Platouri: Săptămâni de muncă fără rezultate vizibile, ducând la demotivare.",
 ];
 
 const newWay = [
-  "Eat foods you actually love",
-  "Fraction of the cost of a PT",
-  "No pills, teas, or gimmicks",
-  "30-min optimized workouts",
-  "Results that last a lifetime",
+  "Hiper-Eficiență: 20 de minute care activează 90% din musculatură simultan.",
+  "Viteză: Un singur antrenament pe săptămână. Intri, te antrenezi, pleci.",
+  "Sistem Integrat: Plan alimentar personalizat inclus în pachet, nu vândut separat.",
+  "Exclusivitate: Studio privat, 1-la-1 cu antrenorul. Zero public, zero stres.",
+  "Rezultate: Tonifiere vizibilă și metabolism accelerat prin tehnologie, nu prin chin.",
 ];
 
 const ComparisonSection = () => {
@@ -41,7 +41,7 @@ const ComparisonSection = () => {
           {/* Left: The Old Way */}
           <div className="p-8 md:w-1/2 border-b md:border-b-0 md:border-r border-border">
             <h3 className="text-muted-foreground uppercase tracking-widest text-sm font-bold mb-6">
-              The Hard Way
+              Vechiul Mod (Sala Clasică)
             </h3>
             <ul className="space-y-4">
               {oldWay.map((item, index) => (
@@ -56,7 +56,7 @@ const ComparisonSection = () => {
           {/* Right: The New Way */}
           <div className="p-8 md:w-1/2 bg-primary/5">
             <h3 className="text-primary uppercase tracking-widest text-sm font-bold mb-6">
-              The xBody Way
+              Protocolul Body Tone EMS
             </h3>
             <ul className="space-y-4">
               {newWay.map((item, index) => (
