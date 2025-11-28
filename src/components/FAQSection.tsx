@@ -8,19 +8,19 @@ import {
 
 const faqs = [
   {
-    question: "Do I have to cook every day?",
+    question: "Nu am mai făcut sport de mult timp. O să fac față?",
     answer:
-      'No. We teach you "Batch Luxury Preparation." You spend 45 minutes twice a week preparing base components, so you can assemble gourmet meals in 5 minutes flat during the week.',
+      "Absolut. Protocolul nostru este conceput exact pentru persoane care nu au mai făcut mișcare de mult. Antrenorul ajustează intensitatea în funcție de nivelul tău, iar tehnologia EMS face munca grea în locul tău.",
   },
   {
-    question: "I have bad knees/back. Can I do the workouts?",
+    question: "Trebuie să țin o dietă strictă pe lângă antrenament?",
     answer:
-      "Absolutely. Our training app includes specific modifications for injuries. We focus on low-impact, high-tension movements that protect your joints while stimulating muscle.",
+      "Nu. Îți oferim un Plan Alimentar Personalizat care este sustenabil și flexibil. Nu e vorba de restricții extreme, ci de alegeri inteligente care susțin transformarea ta.",
   },
   {
-    question: "Can I still drink alcohol?",
+    question: "Chiar pot înlocui orele de sală cu doar 20 de minute de EMS?",
     answer:
-      'Yes. We have a specific "Social Protocol" that teaches you how to fit a glass of wine or whiskey into your weekly plan without ruining your progress.',
+      "Da. Tehnologia EMS activează 90% din musculatură simultan, comparativ cu doar 40% la sala tradițională. 20 de minute de EMS echivalează cu 90 de minute de antrenament clasic.",
   },
 ];
 
