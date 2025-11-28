@@ -59,8 +59,8 @@ const ProblemSection = () => {
           className="mt-12 text-center"
         >
           <p className="text-xl text-foreground font-serif italic">
-            "If you resonate with even one of these points, the next 3 minutes
-            will change your life."
+            "Dacă te regăsești în măcar unul dintre aceste puncte, următoarele
+            minute îți vor schimba viața."
           </p>
         </motion.div>
       </div>
