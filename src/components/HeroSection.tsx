@@ -89,8 +89,8 @@ const HeroSection = () => {
           >
             Vreau să slăbesc inteligent
           </Button>
-          <p className="mt-4 text-muted-foreground text-sm">
-            Locuri limitate disponibile pentru grupa din această lună.
+          <p className="mt-4 text-white text-sm">
+            Locuri limitate disponibile pentru luna Decembrie.
           </p>
         </motion.div>
       </div>
