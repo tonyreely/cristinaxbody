@@ -22,16 +22,16 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 py-3 px-4 text-center mb-8"
+        className="bg-richblack-900 border-b border-gold-500/30 py-3 px-4 text-center mb-8"
       >
-        <p className="text-richblack-900 font-bold text-sm md:text-base flex items-center justify-center gap-2 flex-wrap">
+        <p className="text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 flex-wrap">
           <span className="animate-pulse text-lg">⚠️</span>
           <span className="uppercase tracking-wide">ULTIMELE 5 LOCURI:</span>
           <span>Pachetul</span>
-          <span className="bg-richblack-900 text-gold-400 px-2 py-0.5 rounded font-black">"2+1 GRATIS"</span>
+          <span className="bg-gold-500 text-richblack-900 px-2 py-0.5 rounded font-black">"2+1 GRATIS"</span>
           <span>la doar</span>
-          <span className="text-richblack-900 font-black text-lg md:text-xl">197 RON</span>
-          <span className="line-through text-richblack-700 opacity-70 text-sm">297 RON</span>
+          <span className="text-gold-400 font-black text-lg md:text-xl">197 RON</span>
+          <span className="line-through text-gold-600/60 text-sm">297 RON</span>
         </p>
       </motion.div>
 
