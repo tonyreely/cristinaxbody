@@ -27,7 +27,7 @@ const ProblemSection = () => {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-serif text-center text-foreground mb-12"
         >
-          Is This <span className="text-primary italic">Your Reality?</span>
+          Aceasta Este <span className="text-primary italic">Realitatea Ta?</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-8">
