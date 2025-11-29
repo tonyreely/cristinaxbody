@@ -12,13 +12,13 @@ const testimonials = [
     quote:
       "Credeam că 'metabolismul lent' de după 40 de ani este o sentință definitivă. Protocolul Body Tone mi-a demonstrat contrariul. Nu am renunțat la ciocolată (o mănânc zilnic, dar calculat) și am abdomenul plat pentru prima dată în ultimii 15 ani. Nu e magie, e pură biologie.",
     name: "Elena S.",
-    role: "Designer de Interior",
+    role: "Educatoare",
   },
   {
     quote:
       "Simplu, eficient și surprinzător de exclusivist. Faptul că sunt singur în studio, fără aglomerație, schimbă totul. Planul alimentar se simte ca un stil de viață, nu ca o pedeapsă. Mă simt ca și cum aș trișa sistemul: efort minim, rezultate de atlet.",
-    name: "Radu D.",
-    role: "Senior Software Developer",
+    name: "Ioana M.",
+    role: "Vânzătoare",
   },
 ];
 
