@@ -30,8 +30,8 @@ const HeroSection = () => {
           <span>Pachetul</span>
           <span className="bg-gold-500 text-richblack-900 px-2 py-0.5 rounded font-black">"2+1 GRATIS"</span>
           <span>la doar</span>
-          <span className="text-gold-400 font-black text-lg md:text-xl">197 RON</span>
-          <span className="line-through text-gold-600/60 text-sm">297 RON</span>
+          <span className="text-yellow-300 font-black text-lg md:text-xl">197 RON</span>
+          <span className="line-through text-yellow-500 text-sm">297 RON</span>
         </p>
       </motion.div>
 
