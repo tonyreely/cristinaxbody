@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import clientCarmen from "@/assets/client-carmen.png";
 import clientSimona from "@/assets/client-simona.png";
+import clientDiana from "@/assets/client-diana.png";
 
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes in seconds
@@ -168,7 +169,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
-          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+          className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
         >
           <div className="bg-card border border-border rounded-xl p-6">
             <img
@@ -188,6 +189,16 @@ const HeroSection = () => {
             />
             <p className="text-foreground text-lg font-display">
               Simona „<span className="font-bold text-gold-400">-5 kg</span> și înapoi la blugii skinny în doar <span className="font-bold text-gold-400">3 ședințe</span>"
+            </p>
+          </div>
+          <div className="bg-card border border-border rounded-xl p-6">
+            <img
+              src={clientDiana}
+              alt="Diana - Transformare de slăbire"
+              className="w-full rounded-lg mb-4"
+            />
+            <p className="text-foreground text-lg font-display">
+              Diana „<span className="font-bold text-gold-400">-9 kg</span> și un abdomen ferm, fără înfometare, în <span className="font-bold text-gold-400">10 săptămâni</span>"
             </p>
           </div>
         </motion.div>
