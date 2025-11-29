@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import clientCarmen from "@/assets/client-carmen.png";
+import clientSimona from "@/assets/client-simona.png";
 
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes in seconds
@@ -167,16 +168,26 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
-          className="mt-12"
+          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
         >
-          <div className="bg-card border border-border rounded-xl p-6 md:p-8 max-w-2xl mx-auto">
+          <div className="bg-card border border-border rounded-xl p-6">
             <img
               src={clientCarmen}
               alt="Carmen - Transformare de slăbire"
               className="w-full rounded-lg mb-4"
             />
-            <p className="text-foreground text-lg md:text-xl font-display">
+            <p className="text-foreground text-lg font-display">
               Carmen „<span className="font-bold text-gold-400">-18.5 kg</span> și o talie subțire, perfect definită în <span className="font-bold text-gold-400">3 luni și jumătate</span>"
+            </p>
+          </div>
+          <div className="bg-card border border-border rounded-xl p-6">
+            <img
+              src={clientSimona}
+              alt="Simona - Transformare de slăbire"
+              className="w-full rounded-lg mb-4"
+            />
+            <p className="text-foreground text-lg font-display">
+              Simona „<span className="font-bold text-gold-400">-5 kg</span> și înapoi la blugii skinny în doar <span className="font-bold text-gold-400">3 ședințe</span>"
             </p>
           </div>
         </motion.div>
