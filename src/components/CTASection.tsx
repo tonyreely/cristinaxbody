@@ -36,7 +36,7 @@ const CTASection = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <Button variant="hero" size="xl">
-            Vreau să slăbesc inteligent
+            VREAU SĂ ÎNCEP TRANSFORMAREA
           </Button>
         </motion.div>
 
