@@ -30,7 +30,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6 }}
           className="text-gold-400 font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4 animate-pulse-gold"
         >
-          Protocolul Body Tone
+          Pentru cei care s-au săturat să slăbească și să se îngrașe la loc...
         </motion.p>
 
         <motion.h1
