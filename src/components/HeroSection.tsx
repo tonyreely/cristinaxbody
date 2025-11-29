@@ -128,7 +128,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-8 mx-auto max-w-xl bg-gray-100 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 md:p-8"
         >
-          <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-4">
+          <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-4 font-display">
             Această ofertă este rezervată pentru tine — dar numai până când cronometrul ajunge la zero.
           </h3>
 

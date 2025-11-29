@@ -68,6 +68,7 @@ export default {
       fontFamily: {
         sans: ['Lato', 'sans-serif'],
         serif: ['Playfair Display', 'serif'],
+        display: ['Montserrat', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

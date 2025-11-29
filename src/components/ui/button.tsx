@@ -18,7 +18,7 @@ const buttonVariants = cva(
         // Premium gold button with glow
         gold: "bg-primary text-primary-foreground hover:bg-gold-400 shadow-[0_0_20px_hsla(43,67%,52%,0.3)] hover:shadow-[0_0_30px_hsla(43,67%,52%,0.5)] transform hover:-translate-y-0.5",
         // Hero variant - larger, more prominent
-        hero: "bg-primary text-primary-foreground hover:bg-gold-400 shadow-[0_0_30px_hsla(43,67%,52%,0.4)] hover:shadow-[0_0_40px_hsla(43,67%,52%,0.6)] transform hover:-translate-y-1",
+        hero: "bg-primary text-primary-foreground hover:bg-gold-400 shadow-[0_0_30px_hsla(43,67%,52%,0.4)] hover:shadow-[0_0_40px_hsla(43,67%,52%,0.6)] transform hover:-translate-y-1 font-display",
       },
       size: {
         default: "h-10 px-6 py-2",
