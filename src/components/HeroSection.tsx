@@ -114,7 +114,7 @@ const HeroSection = () => {
             size="xl"
             onClick={() => scrollToSection("consultation")}
           >
-            Vreau să slăbesc inteligent
+            VREAU SĂ ÎNCEP TRANSFORMAREA
           </Button>
           <p className="mt-4 text-white text-sm">
             Locuri limitate disponibile pentru luna Decembrie.
