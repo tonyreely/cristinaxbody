@@ -49,7 +49,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
         >
-          Descoperă cum să topești grăsimea încăpățânată fără să renunți la viața ta.
+          Descoperă cum <span className="text-gold-400">să topești grăsimea încăpățânată</span> fără să renunți la <span className="text-gold-400">viața ta</span>.
         </motion.p>
 
         <motion.div
