@@ -16,7 +16,7 @@ const HeroSection = () => {
   };
 
   return (
-    <header className="relative pt-32 pb-16 md:pt-48 md:pb-32 overflow-hidden">
+    <header className="relative pt-8 pb-16 md:pt-12 md:pb-32 overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-gold-600 rounded-full blur-[128px]" />
