@@ -49,7 +49,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
         >
-          Cum să slăbești 10kg în 90 de zile savurând mâncarea bună, vinul și alimentele preferate. Fără înfometare. Fără caserole. Doar strategie.
+          Descoperă cum să topești grăsimea încăpățânată fără să renunți la cinele în oraș sau la paharul de vin. Nu ai nevoie de înfometare, ai nevoie de activare metabolică și strategie.
         </motion.p>
 
         <motion.div
