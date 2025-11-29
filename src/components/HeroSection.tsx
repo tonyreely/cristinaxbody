@@ -16,7 +16,25 @@ const HeroSection = () => {
   };
 
   return (
-    <header className="relative pt-8 pb-16 md:pt-12 md:pb-32 overflow-hidden">
+    <header className="relative pt-0 pb-16 md:pb-32 overflow-hidden">
+      {/* Urgency Banner */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 py-3 px-4 text-center mb-8"
+      >
+        <p className="text-richblack-900 font-bold text-sm md:text-base flex items-center justify-center gap-2 flex-wrap">
+          <span className="animate-pulse text-lg">⚠️</span>
+          <span className="uppercase tracking-wide">ULTIMELE 5 LOCURI:</span>
+          <span>Pachetul</span>
+          <span className="bg-richblack-900 text-gold-400 px-2 py-0.5 rounded font-black">"2+1 GRATIS"</span>
+          <span>la doar</span>
+          <span className="text-richblack-900 font-black text-lg md:text-xl">197 RON</span>
+          <span className="line-through text-richblack-700 opacity-70 text-sm">297 RON</span>
+        </p>
+      </motion.div>
+
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-gold-600 rounded-full blur-[128px]" />
