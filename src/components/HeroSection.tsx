@@ -47,9 +47,9 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
+          className="text-lg md:text-xl mb-10 max-w-2xl mx-auto"
         >
-          Descoperă cum <span className="text-gold-400">să topești grăsimea încăpățânată</span> fără să renunți la <span className="text-gold-400">viața ta</span>.
+          <span className="text-foreground">Descoperă cum</span> <span className="text-gold-400">să topești grăsimea încăpățânată</span> <span className="text-foreground">fără să renunți la</span> <span className="text-gold-400">viața ta</span>.
         </motion.p>
 
         <motion.div
