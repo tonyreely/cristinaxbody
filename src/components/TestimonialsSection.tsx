@@ -62,14 +62,11 @@ const TestimonialsSection = () => {
               <p className="text-muted-foreground italic mb-6">
                 "{testimonial.quote}"
               </p>
-              <div className="flex items-center">
-                <div className="w-10 h-10 bg-muted rounded-full mr-3" />
-                <div>
-                  <p className="text-foreground font-bold">{testimonial.name}</p>
-                  <p className="text-xs text-primary uppercase">
-                    {testimonial.role}
-                  </p>
-                </div>
+              <div>
+                <p className="text-foreground font-bold">{testimonial.name}</p>
+                <p className="text-xs text-primary uppercase">
+                  {testimonial.role}
+                </p>
               </div>
             </motion.div>
           ))}
