@@ -1,7 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const HeroSection = () => {
+  const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes in seconds
+  const [hasExtended, setHasExtended] = useState(false);
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => Math.max(0, prev - 1));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
+
+  const handleExtendTime = () => {
+    if (!hasExtended) {
+      setTimeLeft((prev) => prev + 5 * 60);
+      setHasExtended(true);
+    }
+  };
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -91,6 +118,46 @@ const HeroSection = () => {
           </Button>
           <p className="mt-4 text-white text-sm">
             Locuri limitate disponibile pentru luna Decembrie.
+          </p>
+        </motion.div>
+
+        {/* Scarcity Timer Module */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mt-8 mx-auto max-w-xl bg-gray-100 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 md:p-8"
+        >
+          <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-4">
+            Această ofertă este rezervată pentru tine — dar numai până când cronometrul ajunge la zero.
+          </h3>
+
+          <div className="my-6">
+            <span className="text-5xl md:text-6xl font-black text-red-600 tabular-nums">
+              {formatTime(timeLeft)}
+            </span>
+          </div>
+
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
+            Ai nevoie de un moment de gândire? Blochează prețul ca să nu-l pierzi.
+          </p>
+
+          <Button
+            onClick={handleExtendTime}
+            disabled={hasExtended}
+            className={`
+              px-6 py-3 text-lg font-bold rounded-lg transition-all duration-300
+              ${hasExtended 
+                ? "bg-gray-400 text-gray-600 cursor-not-allowed" 
+                : "bg-yellow-500 hover:bg-yellow-400 text-gray-900 shadow-lg hover:shadow-xl"
+              }
+            `}
+          >
+            {hasExtended ? "✓ Timp prelungit cu 5 minute" : "DA — Vreau încă 5 minute de gândire"}
+          </Button>
+
+          <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+            Prelungire disponibilă o singură dată pentru a nu bloca alți clienți.
           </p>
         </motion.div>
       </div>
