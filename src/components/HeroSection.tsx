@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import clientCarmen from "@/assets/client-carmen.png";
 
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes in seconds
@@ -159,6 +160,25 @@ const HeroSection = () => {
           <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
             Prelungire disponibilă o singură dată pentru a nu bloca alți clienți.
           </p>
+        </motion.div>
+
+        {/* Client Results Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+          className="mt-12"
+        >
+          <div className="bg-card border border-border rounded-xl p-6 md:p-8 max-w-2xl mx-auto">
+            <img
+              src={clientCarmen}
+              alt="Carmen - Transformare de slăbire"
+              className="w-full rounded-lg mb-4"
+            />
+            <p className="text-foreground text-lg md:text-xl font-display">
+              Carmen „<span className="font-bold text-gold-400">-18.5 kg</span> și o talie subțire, perfect definită în <span className="font-bold text-gold-400">3 luni și jumătate</span>"
+            </p>
+          </div>
         </motion.div>
       </div>
     </header>
