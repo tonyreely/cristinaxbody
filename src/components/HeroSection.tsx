@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import clientCarmen from "@/assets/client-carmen.png";
 import clientSimona from "@/assets/client-simona.png";
 import clientDiana from "@/assets/client-diana.png";
+import { useCTAModal } from "@/contexts/CTAModalContext";
 
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes in seconds
   const [hasExtended, setHasExtended] = useState(false);
+  const { openModal } = useCTAModal();
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -29,19 +31,6 @@ const HeroSection = () => {
     if (!hasExtended) {
       setTimeLeft((prev) => prev + 5 * 60);
       setHasExtended(true);
-    }
-  };
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const headerOffset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
     }
   };
 
@@ -115,7 +104,7 @@ const HeroSection = () => {
           <Button
             variant="hero"
             size="xl"
-            onClick={() => scrollToSection("consultation")}
+            onClick={openModal}
           >
             VREAU SĂ ÎNCEP TRANSFORMAREA
           </Button>

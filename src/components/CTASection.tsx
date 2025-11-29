@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useCTAModal } from "@/contexts/CTAModalContext";
 
 const CTASection = () => {
+  const { openModal } = useCTAModal();
   return (
     <section
       id="consultation"
@@ -35,7 +37,7 @@ const CTASection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Button variant="hero" size="xl">
+          <Button variant="hero" size="xl" onClick={openModal}>
             VREAU SĂ ÎNCEP TRANSFORMAREA
           </Button>
         </motion.div>
