@@ -100,7 +100,7 @@ const CTAModal = () => {
               {/* Header */}
               <div className="text-center mb-6">
                 <h3 className="text-xl md:text-2xl font-serif font-bold text-foreground mb-2">
-                  🎉 Excelent! Ai blocat oferta 2+1 la 197 RON.
+                  🎉 Excelent! Ai blocat oferta <span className="text-primary">2+1</span> la <span className="text-primary">197 RON</span>.
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   Mai ai un singur pas pentru a-ți securiza locul în calendar.
@@ -160,7 +160,7 @@ const CTAModal = () => {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="Unde îți trimitem planul alimentar?"
+                    placeholder="Unde îți trimitem sfaturile gratuite?"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     className="bg-muted border-border focus:border-primary focus:ring-primary"
@@ -198,7 +198,7 @@ const CTAModal = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full mt-6 bg-gradient-to-r from-primary to-gold-400 text-primary-foreground font-bold text-sm md:text-base py-6 rounded-lg shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+                  className="w-full mt-6 bg-gradient-to-r from-primary to-gold-400 text-primary-foreground font-display font-bold text-sm md:text-base py-6 rounded-lg shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
                 >
                   {isSubmitting ? (
                     "Se procesează..."
