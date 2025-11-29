@@ -30,7 +30,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6 }}
           className="text-gold-400 font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4 animate-pulse-gold"
         >
-          The Gourmet Protocol
+          Protocolul Body Tone
         </motion.p>
 
         <motion.h1
@@ -39,8 +39,8 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground mb-6 leading-tight"
         >
-          Sculpt Your Body. <br />
-          <span className="gold-gradient-text italic">Savor the Lifestyle.</span>
+          Sculptează-ți Corpul. <br />
+          <span className="gold-gradient-text italic">Savurează Stilul de Viață.</span>
         </motion.h1>
 
         <motion.p
@@ -49,8 +49,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
         >
-          How to drop 20lbs in 90 days while enjoying fine dining, wine, and the
-          foods you love. No starvation. No tupperware containers. Just strategy.
+          Cum să slăbești 10kg în 90 de zile savurând mâncarea bună, vinul și alimentele preferate. Fără înfometare. Fără caserole. Doar strategie.
         </motion.p>
 
         <motion.div
@@ -83,7 +82,7 @@ const HeroSection = () => {
             Vreau să slăbesc inteligent
           </Button>
           <p className="mt-4 text-muted-foreground text-sm">
-            Limited spots available for October cohort.
+            Locuri limitate disponibile pentru grupa din această lună.
           </p>
         </motion.div>
       </div>

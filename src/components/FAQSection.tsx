@@ -35,7 +35,7 @@ const FAQSection = () => {
           transition={{ duration: 0.6 }}
           className="text-3xl font-serif text-foreground text-center mb-12"
         >
-          Common <span className="text-primary">Questions</span>
+          Întrebări <span className="text-primary">Frecvente</span>
         </motion.h2>
 
         <Accordion type="single" collapsible className="space-y-4">
