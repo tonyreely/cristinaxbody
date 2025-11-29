@@ -46,7 +46,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-gold-400 font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4 animate-pulse-gold"
+          className="text-white font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4 animate-pulse-gold"
         >
           Pentru cei care s-au săturat să slăbească și să se îngrașe la loc...
         </motion.p>
