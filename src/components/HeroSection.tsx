@@ -146,7 +146,7 @@ const HeroSection = () => {
             onClick={handleExtendTime}
             disabled={hasExtended}
             className={`
-              px-6 py-3 text-lg font-bold rounded-lg transition-all duration-300
+              px-6 py-3 text-lg font-bold rounded-lg transition-all duration-300 font-display
               ${hasExtended 
                 ? "bg-gray-400 text-gray-600 cursor-not-allowed" 
                 : "bg-yellow-500 hover:bg-yellow-400 text-gray-900 shadow-lg hover:shadow-xl"
