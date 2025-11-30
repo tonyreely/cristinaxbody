@@ -5,17 +5,17 @@ const locations = [
   {
     title: "CLUJ — IRIS",
     address: "Strada Oașului 86-90",
-    mapsUrl: "https://maps.google.com/?q=Strada+Oașului+86-90+Cluj-Napoca",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Strada+Oașului+86-90,+Cluj-Napoca",
   },
   {
     title: "CLUJ — MĂNĂȘTUR",
     address: "Strada Agricultorilor 1",
-    mapsUrl: "https://maps.google.com/?q=Strada+Agricultorilor+1+Cluj-Napoca",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Strada+Agricultorilor+1,+Cluj-Napoca",
   },
   {
     title: "FLOREȘTI",
     address: "Strada Eroilor 82B",
-    mapsUrl: "https://maps.google.com/?q=Strada+Eroilor+82B+Florești",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Strada+Eroilor+82B,+Florești",
   },
 ];
 
