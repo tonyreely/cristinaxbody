@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { useCTAModal } from "@/contexts/CTAModalContext";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const CTAModal = () => {
   const { isOpen, closeModal } = useCTAModal();
@@ -73,11 +74,31 @@ const CTAModal = () => {
 
     setIsSubmitting(true);
     
-    // Simulate saving data then move to step 2
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Save lead data to database
+      const { error } = await supabase.from("leads").insert({
+        first_name: formData.prenume.trim(),
+        phone: formData.telefon.trim(),
+        email: formData.email.trim(),
+        goal: formData.obiectiv,
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      // Success - move to step 2
       setStep(2);
-    }, 500);
+    } catch (error) {
+      console.error("Error saving lead:", error);
+      toast({ 
+        title: "A apărut o eroare", 
+        description: "Te rugăm să încerci din nou.",
+        variant: "destructive" 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleClose = () => {
