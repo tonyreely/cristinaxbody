@@ -14,6 +14,37 @@ import {
 import { useCTAModal } from "@/contexts/CTAModalContext";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+// Comprehensive input validation schema
+const leadSchema = z.object({
+  prenume: z
+    .string()
+    .trim()
+    .min(2, { message: "Prenumele trebuie să aibă minim 2 caractere" })
+    .max(100, { message: "Prenumele este prea lung" })
+    .regex(/^[a-zA-ZăâîșțĂÂÎȘȚ\s\-']+$/, { 
+      message: "Prenumele conține caractere invalide" 
+    }),
+  telefon: z
+    .string()
+    .trim()
+    .min(10, { message: "Numărul de telefon este prea scurt" })
+    .max(15, { message: "Numărul de telefon este prea lung" })
+    .regex(/^[0-9+\s\-()]+$/, { 
+      message: "Numărul de telefon conține caractere invalide" 
+    }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: "Adresa de email nu este validă" })
+    .max(255, { message: "Email-ul este prea lung" })
+    .toLowerCase(),
+  obiectiv: z
+    .enum(["slabire", "tonifiere", "dureri-spate", "post-sarcina"], {
+      errorMap: () => ({ message: "Te rugăm să selectezi un obiectiv valid" })
+    })
+});
 
 const CTAModal = () => {
   const { isOpen, closeModal } = useCTAModal();
@@ -54,33 +85,18 @@ const CTAModal = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validation
-    if (!formData.prenume.trim()) {
-      toast({ title: "Te rugăm să introduci prenumele", variant: "destructive" });
-      return;
-    }
-    if (!formData.telefon.trim()) {
-      toast({ title: "Te rugăm să introduci numărul de telefon", variant: "destructive" });
-      return;
-    }
-    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      toast({ title: "Te rugăm să introduci o adresă de email validă", variant: "destructive" });
-      return;
-    }
-    if (!formData.obiectiv) {
-      toast({ title: "Te rugăm să selectezi obiectivul tău", variant: "destructive" });
-      return;
-    }
-
-    setIsSubmitting(true);
-    
+    // Comprehensive validation with zod
     try {
-      // Save lead data to database
+      const validatedData = leadSchema.parse(formData);
+
+      setIsSubmitting(true);
+      
+      // Save lead data to database with validated and sanitized input
       const { error } = await supabase.from("leads").insert({
-        first_name: formData.prenume.trim(),
-        phone: formData.telefon.trim(),
-        email: formData.email.trim(),
-        goal: formData.obiectiv,
+        first_name: validatedData.prenume,
+        phone: validatedData.telefon,
+        email: validatedData.email,
+        goal: validatedData.obiectiv,
       });
 
       if (error) {
@@ -90,12 +106,20 @@ const CTAModal = () => {
       // Success - move to step 2
       setStep(2);
     } catch (error) {
-      console.error("Error saving lead:", error);
-      toast({ 
-        title: "A apărut o eroare", 
-        description: "Te rugăm să încerci din nou.",
-        variant: "destructive" 
-      });
+      if (error instanceof z.ZodError) {
+        // Display validation error
+        const firstError = error.errors[0];
+        toast({ 
+          title: firstError.message,
+          variant: "destructive" 
+        });
+      } else {
+        toast({ 
+          title: "A apărut o eroare", 
+          description: "Te rugăm să încerci din nou.",
+          variant: "destructive" 
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
