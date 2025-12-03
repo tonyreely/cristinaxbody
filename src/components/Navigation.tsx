@@ -50,7 +50,10 @@ const Navigation = () => {
             <Button
               variant="gold"
               size="default"
-              onClick={() => scrollToSection("consultation")}
+              onClick={() => {
+                (window as any).fbq?.('track', 'InitiateCheckout');
+                scrollToSection("consultation");
+              }}
             >
               VREAU SĂ ÎNCEP TRANSFORMAREA
             </Button>
@@ -74,7 +77,10 @@ const Navigation = () => {
               variant="gold"
               size="lg"
               className="w-full"
-              onClick={() => scrollToSection("consultation")}
+              onClick={() => {
+                (window as any).fbq?.('track', 'InitiateCheckout');
+                scrollToSection("consultation");
+              }}
             >
               VREAU SĂ ÎNCEP TRANSFORMAREA
             </Button>

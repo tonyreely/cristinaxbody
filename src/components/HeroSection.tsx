@@ -104,7 +104,10 @@ const HeroSection = () => {
           <Button
             variant="hero"
             size="xl"
-            onClick={openModal}
+            onClick={() => {
+              (window as any).fbq?.('track', 'InitiateCheckout');
+              openModal();
+            }}
           >
             VREAU SĂ ÎNCEP TRANSFORMAREA
           </Button>
