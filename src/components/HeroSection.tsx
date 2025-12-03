@@ -101,16 +101,15 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <Button
-            variant="hero"
-            size="xl"
-            onClick={() => {
-              (window as any).fbq?.('track', 'InitiateCheckout');
-              openModal();
-            }}
-          >
-            VREAU SĂ ÎNCEP TRANSFORMAREA
-          </Button>
+          <div onClick={() => (window as any).fbq?.('track', 'InitiateCheckout')}>
+            <Button
+              variant="hero"
+              size="xl"
+              onClick={openModal}
+            >
+              VREAU SĂ ÎNCEP TRANSFORMAREA
+            </Button>
+          </div>
           <p className="mt-4 text-white text-sm">
             Locuri limitate disponibile pentru luna Decembrie.
           </p>
