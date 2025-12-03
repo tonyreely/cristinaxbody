@@ -101,9 +101,11 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <div onClick={() => {
-            console.log('Button clicked - Pixel fired');
-            (window as any).fbq?.('track', 'InitiateCheckout');
+          <div onClickCapture={() => {
+            if ((window as any).fbq) {
+              (window as any).fbq('track', 'InitiateCheckout');
+            }
+            console.log('Pixel fired via Capture');
           }}>
             <Button
               variant="hero"

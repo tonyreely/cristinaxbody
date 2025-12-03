@@ -47,9 +47,11 @@ const Navigation = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <div onClick={() => {
-              console.log('Button clicked - Pixel fired');
-              (window as any).fbq?.('track', 'InitiateCheckout');
+            <div onClickCapture={() => {
+              if ((window as any).fbq) {
+                (window as any).fbq('track', 'InitiateCheckout');
+              }
+              console.log('Pixel fired via Capture');
             }}>
               <Button
                 variant="gold"
@@ -75,9 +77,11 @@ const Navigation = () => {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4">
-            <div onClick={() => {
-              console.log('Button clicked - Pixel fired');
-              (window as any).fbq?.('track', 'InitiateCheckout');
+            <div onClickCapture={() => {
+              if ((window as any).fbq) {
+                (window as any).fbq('track', 'InitiateCheckout');
+              }
+              console.log('Pixel fired via Capture');
             }}>
               <Button
                 variant="gold"
