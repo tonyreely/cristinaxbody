@@ -37,7 +37,10 @@ const CTASection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Button variant="hero" size="xl" onClick={openModal}>
+          <Button variant="hero" size="xl" onClick={() => {
+            (window as any).fbq?.('track', 'InitiateCheckout');
+            openModal();
+          }}>
             VREAU SĂ ÎNCEP TRANSFORMAREA
           </Button>
         </motion.div>
