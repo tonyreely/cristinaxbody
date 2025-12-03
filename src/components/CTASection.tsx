@@ -37,9 +37,11 @@ const CTASection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div onClick={() => {
-            console.log('Button clicked - Pixel fired');
-            (window as any).fbq?.('track', 'InitiateCheckout');
+          <div onClickCapture={() => {
+            if ((window as any).fbq) {
+              (window as any).fbq('track', 'InitiateCheckout');
+            }
+            console.log('Pixel fired via Capture');
           }}>
             <Button variant="hero" size="xl" onClick={openModal}>
               VREAU SĂ ÎNCEP TRANSFORMAREA
