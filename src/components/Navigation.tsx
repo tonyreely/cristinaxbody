@@ -47,16 +47,15 @@ const Navigation = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <Button
-              variant="gold"
-              size="default"
-              onClick={() => {
-                (window as any).fbq?.('track', 'InitiateCheckout');
-                scrollToSection("consultation");
-              }}
-            >
-              VREAU SĂ ÎNCEP TRANSFORMAREA
-            </Button>
+            <div onClick={() => (window as any).fbq?.('track', 'InitiateCheckout')}>
+              <Button
+                variant="gold"
+                size="default"
+                onClick={() => scrollToSection("consultation")}
+              >
+                VREAU SĂ ÎNCEP TRANSFORMAREA
+              </Button>
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -73,17 +72,16 @@ const Navigation = () => {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4">
-            <Button
-              variant="gold"
-              size="lg"
-              className="w-full"
-              onClick={() => {
-                (window as any).fbq?.('track', 'InitiateCheckout');
-                scrollToSection("consultation");
-              }}
-            >
-              VREAU SĂ ÎNCEP TRANSFORMAREA
-            </Button>
+            <div onClick={() => (window as any).fbq?.('track', 'InitiateCheckout')}>
+              <Button
+                variant="gold"
+                size="lg"
+                className="w-full"
+                onClick={() => scrollToSection("consultation")}
+              >
+                VREAU SĂ ÎNCEP TRANSFORMAREA
+              </Button>
+            </div>
           </div>
         )}
       </div>
