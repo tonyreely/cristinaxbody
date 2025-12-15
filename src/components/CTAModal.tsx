@@ -57,9 +57,19 @@ const CTAModal = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Load Stripe script when step 2 is shown
+  // Load Stripe script and fire InitiateCheckout pixel when step 2 is shown
   useEffect(() => {
     if (step === 2 && isOpen) {
+      // Fire Meta Pixel InitiateCheckout event
+      if ((window as any).fbq) {
+        (window as any).fbq('track', 'InitiateCheckout', {
+          value: 197,
+          currency: 'RON'
+        });
+        console.log('Meta Pixel: InitiateCheckout fired');
+      }
+
+      // Load Stripe script
       const existingScript = document.querySelector('script[src="https://js.stripe.com/v3/buy-button.js"]');
       if (!existingScript) {
         const script = document.createElement("script");
