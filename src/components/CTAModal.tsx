@@ -343,17 +343,16 @@ const CTAModal = () => {
                     </div>
 
                     {/* Stripe Payment Button */}
-                    <div 
-                      className="flex justify-center py-6"
-                      dangerouslySetInnerHTML={{
-                        __html: `
-                          <stripe-buy-button
-                            buy-button-id="buy_btn_1SZ6lJFGNkHneS3eXCMUsq2V"
-                            publishable-key="pk_live_51SVUKtFGNkHneS3eejOHtuVnrZ6zFOgbT2bZXrXqX5MrEcphkyGBoTea6GzmjaE0rZgFAGeCUKz3mDFuBpJfUOoU00pYhPIIAF"
-                          ></stripe-buy-button>
-                        `
-                      }}
-                    />
+                    <div className="flex justify-center py-6">
+                      <a
+                        href="https://buy.stripe.com/dRmbJ1guFeYFg794ABcMM00?locale=ro&__embed_source=buy_btn_1SZ6lJFGNkHneS3eXCMUsq2V"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center px-8 py-4 bg-[#635BFF] hover:bg-[#5851DB] text-white font-semibold text-base rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        Începe Transformarea
+                      </a>
+                    </div>
 
                     {/* Trust Badge */}
                     <p className="text-center text-xs text-muted-foreground mt-4">
