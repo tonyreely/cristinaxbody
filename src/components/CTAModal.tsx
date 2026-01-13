@@ -188,10 +188,10 @@ const CTAModal = () => {
                     {/* Header */}
                     <div className="text-center mb-6">
                       <h3 className="text-xl md:text-2xl font-serif font-bold text-foreground mb-2">
-                        🎉 Excelent! Ai blocat oferta <span className="text-primary">2+1</span> la <span className="text-primary">197 RON</span>.
+                        🎉 Excelent! Ai blocat Pachetul <span className="text-primary">"3+1 GRATIS"</span> la doar <span className="text-primary">347 RON</span> <span className="line-through text-muted-foreground text-lg">436 RON</span>
                       </h3>
                       <p className="text-muted-foreground text-sm">
-                        Mai ai un singur pas pentru a-ți securiza locul în calendar.
+                        Mai ai un singur pas pentru a-ți securiza locul în calendar în Ianuarie.
                       </p>
                     </div>
 
