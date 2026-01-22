@@ -1,1 +1,13 @@
 project_id = "bywunycshecfmrcxaijh"
+
+[functions.create-checkout-session]
+verify_jwt = false
+
+[functions.verify-checkout-session]
+verify_jwt = false
+
+[functions.sync-lead-to-sheets]
+verify_jwt = false
+
+[functions.backfill-leads-to-sheets]
+verify_jwt = false

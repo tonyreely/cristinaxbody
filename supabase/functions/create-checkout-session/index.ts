@@ -3,8 +3,11 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
+
 type CreateCheckoutBody = {
   email?: string;
+  leadId?: string;
 };
 
 Deno.serve(async (req) => {
@@ -26,6 +29,8 @@ Deno.serve(async (req) => {
 
     const body = (await req.json().catch(() => ({}))) as CreateCheckoutBody;
     const email = (body.email || "").toString().trim().toLowerCase();
+    const leadId = (body.leadId || "").toString().trim();
+    
     if (!email) {
       return new Response(JSON.stringify({ error: "Missing email" }), {
         status: 400,
@@ -33,11 +38,25 @@ Deno.serve(async (req) => {
       });
     }
 
+    // Create payment record if leadId is provided
+    if (leadId) {
+      const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+      const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+      const supabase = createClient(supabaseUrl, supabaseServiceKey);
+      
+      // We'll update with the actual session ID after creating it
+      console.log("Lead ID received for payment tracking:", leadId);
+    }
+
     const params = new URLSearchParams();
     params.set("mode", "payment");
     params.set("payment_method_types[]", "card");
     params.set("customer_email", email);
-    params.set("success_url", `${baseUrl}/thank-you?session_id={CHECKOUT_SESSION_ID}`);
+    // Include leadId in success URL for payment verification
+    const successUrl = leadId 
+      ? `${baseUrl}/thank-you?session_id={CHECKOUT_SESSION_ID}&lead_id=${leadId}`
+      : `${baseUrl}/thank-you?session_id={CHECKOUT_SESSION_ID}`;
+    params.set("success_url", successUrl);
     params.set("cancel_url", `${baseUrl}/?canceled=1`);
 
     // 47.00 RON deposit
@@ -65,6 +84,26 @@ Deno.serve(async (req) => {
     }
 
     const session = JSON.parse(text) as { url?: string; id?: string };
+    
+    // Create payment record with session ID
+    if (leadId && session.id) {
+      const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+      const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+      const supabase = createClient(supabaseUrl, supabaseServiceKey);
+      
+      const { error: paymentError } = await supabase.from("payments").insert({
+        lead_id: leadId,
+        stripe_session_id: session.id,
+        paid: false,
+      });
+      
+      if (paymentError) {
+        console.error("Failed to create payment record:", paymentError);
+      } else {
+        console.log("Payment record created for session:", session.id);
+      }
+    }
+    
     return new Response(JSON.stringify({ url: session.url, id: session.id }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },

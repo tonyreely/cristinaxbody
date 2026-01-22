@@ -55,6 +55,7 @@ const CTAModal = () => {
     email: "",
     obiectiv: "",
   });
+  const [leadId, setLeadId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isStartingCheckout, setIsStartingCheckout] = useState(false);
 
@@ -77,6 +78,7 @@ const CTAModal = () => {
     if (!isOpen) {
       setStep(1);
       setFormData({ prenume: "", telefon: "", email: "", obiectiv: "" });
+      setLeadId(null);
     }
   }, [isOpen]);
 
@@ -94,15 +96,32 @@ const CTAModal = () => {
       setIsSubmitting(true);
       
       // Save lead data to database with validated and sanitized input
-      const { error } = await supabase.from("leads").insert({
+      const { data: insertedLead, error } = await supabase.from("leads").insert({
         first_name: validatedData.prenume,
         phone: validatedData.telefon,
         email: validatedData.email,
         goal: validatedData.obiectiv,
-      });
+      }).select("id").single();
 
       if (error) {
         throw error;
+      }
+
+      // Store lead ID for checkout
+      const newLeadId = insertedLead?.id;
+      if (newLeadId) {
+        setLeadId(newLeadId);
+        
+        // Sync to Google Sheets with NEPLĂTIT status (fire and forget)
+        supabase.functions.invoke("sync-lead-to-sheets", {
+          body: { leadId: newLeadId, status: "NEPLĂTIT" },
+        }).then(({ error: syncError }) => {
+          if (syncError) {
+            console.error("Failed to sync lead to sheets:", syncError);
+          } else {
+            console.log("Lead synced to sheets with NEPLĂTIT status");
+          }
+        });
       }
 
       // Success - move to step 2
@@ -139,6 +158,7 @@ const CTAModal = () => {
         {
           body: {
             email: formData.email,
+            leadId: leadId,
           },
         }
       );
