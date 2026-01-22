@@ -57,6 +57,7 @@ Deno.serve(async (req) => {
     params.set("mode", "payment");
     params.set("payment_method_types[]", "card");
     params.set("customer_email", email);
+    params.set("locale", "ro"); // Forțează interfața în română
     
     // Include leadId in success URL for payment verification
     const successUrl = leadId 
@@ -70,6 +71,10 @@ Deno.serve(async (req) => {
     params.set("line_items[0][price_data][currency]", "ron");
     params.set("line_items[0][price_data][unit_amount]", "4700");
     params.set("line_items[0][price_data][product_data][name]", "Avans rezervare xBody (47 RON)");
+    params.set(
+      "line_items[0][price_data][product_data][description]",
+      "Avansul de 47 RON se scade integral din preț (nu e o taxă suplimentară). Este confirmarea ta că vrei să faci o schimbare reală."
+    );
 
     console.log(`[${requestId}] Calling Stripe API...`);
     
