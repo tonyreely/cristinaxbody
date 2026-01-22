@@ -101,7 +101,7 @@ serve(async (req) => {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")}`,
             },
-            body: JSON.stringify({ leadId, paid: true }),
+            body: JSON.stringify({ leadId, status: "PLĂTIT" }),
           }
         );
         console.log("Sheets sync response:", sheetsResponse.status);
