@@ -148,7 +148,7 @@ const CTAModal = () => {
   // Build checkout URL for Step 2 - available at render time for HTML link
   const paymentLinkBase = "https://buy.stripe.com/dRmbJ1guFeYFg794ABcMM00";
   const checkoutUrl = leadId && formData.email 
-    ? `${paymentLinkBase}?client_reference_id=${leadId}&prefilled_email=${encodeURIComponent(formData.email.trim().toLowerCase())}`
+    ? `${paymentLinkBase}?client_reference_id=${leadId}&prefilled_email=${encodeURIComponent(formData.email.trim().toLowerCase())}&locale=ro`
     : paymentLinkBase;
   
   const canCheckout = Boolean(leadId && formData.email);
