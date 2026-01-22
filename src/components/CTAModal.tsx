@@ -145,32 +145,13 @@ const CTAModal = () => {
     closeModal();
   };
 
-  const startCheckout = () => {
-    // Prevent double-click
-    if (isStartingCheckout) return;
-    
-    if (!leadId || !formData.email) {
-      toast({
-        title: "Eroare",
-        description: "Datele nu sunt complete. Te rugăm să reîncerci.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsStartingCheckout(true);
-    
-    // Direct Payment Link navigation - maximum compatibility, no backend calls
-    // client_reference_id links the payment to the leadId in Stripe
-    // prefilled_email pre-fills the customer email in checkout
-    const paymentLinkBase = "https://buy.stripe.com/dRmbJ1guFeYFg794ABcMM00";
-    const checkoutUrl = `${paymentLinkBase}?client_reference_id=${leadId}&prefilled_email=${encodeURIComponent(formData.email.trim().toLowerCase())}`;
-    
-    console.log("Navigating to Stripe Payment Link with leadId:", leadId);
-    
-    // Direct same-tab navigation - most reliable across all browsers including iOS Safari
-    window.location.href = checkoutUrl;
-  };
+  // Build checkout URL for Step 2 - available at render time for HTML link
+  const paymentLinkBase = "https://buy.stripe.com/dRmbJ1guFeYFg794ABcMM00";
+  const checkoutUrl = leadId && formData.email 
+    ? `${paymentLinkBase}?client_reference_id=${leadId}&prefilled_email=${encodeURIComponent(formData.email.trim().toLowerCase())}`
+    : paymentLinkBase;
+  
+  const canCheckout = Boolean(leadId && formData.email);
 
   return (
     <AnimatePresence>
@@ -375,21 +356,27 @@ const CTAModal = () => {
                       </p>
                     </div>
 
-                    {/* Stripe Payment Button */}
+                    {/* Stripe Payment Link - Native HTML navigation with target="_top" */}
                     <div className="flex flex-col items-center gap-3 py-6">
-                      <button
-                        type="button"
-                        onClick={startCheckout}
-                        disabled={isStartingCheckout}
-                        className="inline-flex items-center justify-center px-8 py-4 bg-[#635BFF] hover:bg-[#5851DB] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-base rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                      >
-                        {isStartingCheckout ? "Se deschide plata..." : "Începe Transformarea"}
-                      </button>
+                      {canCheckout ? (
+                        <a
+                          href={checkoutUrl}
+                          target="_top"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-8 py-4 bg-[#635BFF] hover:bg-[#5851DB] text-white font-semibold text-base rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                        >
+                          Începe Transformarea
+                        </a>
+                      ) : (
+                        <span className="inline-flex items-center justify-center px-8 py-4 bg-[#635BFF] opacity-60 cursor-not-allowed text-white font-semibold text-base rounded-lg">
+                          Începe Transformarea
+                        </span>
+                      )}
                       
-                      {/* Backup payment link if redirect fails */}
+                      {/* Backup payment link - same URL, same target */}
                       <a
-                        href="https://buy.stripe.com/dRmbJ1guFeYFg794ABcMM00"
-                        target="_blank"
+                        href={checkoutUrl}
+                        target="_top"
                         rel="noopener noreferrer"
                         className="text-xs text-muted-foreground hover:text-primary underline mt-2"
                       >
