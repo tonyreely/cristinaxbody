@@ -101,20 +101,9 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <div onClickCapture={() => {
-            if ((window as any).fbq) {
-              (window as any).fbq('track', 'InitiateCheckout');
-            }
-            console.log('Pixel fired via Capture');
-          }}>
-            <Button
-              variant="hero"
-              size="xl"
-              onClick={openModal}
-            >
-              VREAU SĂ ÎNCEP TRANSFORMAREA
-            </Button>
-          </div>
+          <Button variant="hero" size="xl" onClick={openModal}>
+            VREAU SĂ ÎNCEP TRANSFORMAREA
+          </Button>
           <p className="mt-4 text-white text-sm">
             Locuri limitate disponibile pentru luna Ianuarie.
           </p>

@@ -56,6 +56,7 @@ const CTAModal = () => {
     obiectiv: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isStartingCheckout, setIsStartingCheckout] = useState(false);
 
   // Load Stripe script and fire InitiateCheckout pixel when step 2 is shown
   useEffect(() => {
@@ -63,19 +64,10 @@ const CTAModal = () => {
       // Fire Meta Pixel InitiateCheckout event
       if ((window as any).fbq) {
         (window as any).fbq('track', 'InitiateCheckout', {
-          value: 197,
+          value: 47,
           currency: 'RON'
         });
         console.log('Meta Pixel: InitiateCheckout fired');
-      }
-
-      // Load Stripe script
-      const existingScript = document.querySelector('script[src="https://js.stripe.com/v3/buy-button.js"]');
-      if (!existingScript) {
-        const script = document.createElement("script");
-        script.src = "https://js.stripe.com/v3/buy-button.js";
-        script.async = true;
-        document.body.appendChild(script);
       }
     }
   }, [step, isOpen]);
@@ -137,6 +129,35 @@ const CTAModal = () => {
 
   const handleClose = () => {
     closeModal();
+  };
+
+  const startCheckout = async () => {
+    try {
+      setIsStartingCheckout(true);
+      const { data, error } = await supabase.functions.invoke(
+        "create-checkout-session",
+        {
+          body: {
+            email: formData.email,
+          },
+        }
+      );
+
+      if (error) throw error;
+      if (!data?.url) {
+        throw new Error("Missing Stripe Checkout URL");
+      }
+
+      window.location.href = data.url as string;
+    } catch (err) {
+      console.error("Failed to start checkout", err);
+      toast({
+        title: "Nu am putut porni plata",
+        description: "Te rugăm să încerci din nou.",
+        variant: "destructive",
+      });
+      setIsStartingCheckout(false);
+    }
   };
 
   return (
@@ -344,14 +365,14 @@ const CTAModal = () => {
 
                     {/* Stripe Payment Button */}
                     <div className="flex justify-center py-6">
-                      <a
-                        href="https://buy.stripe.com/dRmbJ1guFeYFg794ABcMM00?locale=ro&__embed_source=buy_btn_1SZ6lJFGNkHneS3eXCMUsq2V"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center px-8 py-4 bg-[#635BFF] hover:bg-[#5851DB] text-white font-semibold text-base rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                      <button
+                        type="button"
+                        onClick={startCheckout}
+                        disabled={isStartingCheckout}
+                        className="inline-flex items-center justify-center px-8 py-4 bg-[#635BFF] hover:bg-[#5851DB] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-base rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
                       >
-                        Începe Transformarea
-                      </a>
+                        {isStartingCheckout ? "Se deschide plata..." : "Începe Transformarea"}
+                      </button>
                     </div>
 
                     {/* Trust Badge */}
