@@ -160,18 +160,16 @@ const CTAModal = () => {
 
     setIsStartingCheckout(true);
     
-    // Build redirect URL with query params
-    const redirectUrl = new URL(
-      `https://bywunycshecfmrcxaijh.supabase.co/functions/v1/redirect-to-checkout`
-    );
-    redirectUrl.searchParams.set("email", formData.email.trim().toLowerCase());
-    redirectUrl.searchParams.set("leadId", leadId);
-    redirectUrl.searchParams.set("returnTo", window.location.origin);
+    // Direct Payment Link navigation - maximum compatibility, no backend calls
+    // client_reference_id links the payment to the leadId in Stripe
+    // prefilled_email pre-fills the customer email in checkout
+    const paymentLinkBase = "https://buy.stripe.com/eVq6rbfz1cjj5hK8ww";
+    const checkoutUrl = `${paymentLinkBase}?client_reference_id=${leadId}&prefilled_email=${encodeURIComponent(formData.email.trim().toLowerCase())}`;
     
-    console.log("Navigating to redirect-to-checkout...");
+    console.log("Navigating to Stripe Payment Link with leadId:", leadId);
     
     // Direct same-tab navigation - most reliable across all browsers including iOS Safari
-    window.location.href = redirectUrl.toString();
+    window.location.href = checkoutUrl;
   };
 
   return (
