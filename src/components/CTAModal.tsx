@@ -95,34 +95,28 @@ const CTAModal = () => {
 
       setIsSubmitting(true);
       
-      // Save lead data to database with validated and sanitized input
-      const { data: insertedLead, error } = await supabase.from("leads").insert({
-        first_name: validatedData.prenume,
-        phone: validatedData.telefon,
-        email: validatedData.email,
-        goal: validatedData.obiectiv,
-      }).select("id").single();
+      // Submit lead via Edge Function (bypasses RLS issues)
+      const { data, error } = await supabase.functions.invoke("submit-lead", {
+        body: {
+          prenume: validatedData.prenume,
+          telefon: validatedData.telefon,
+          email: validatedData.email,
+          obiectiv: validatedData.obiectiv,
+        },
+      });
 
       if (error) {
-        throw error;
+        console.error("Edge function error:", error);
+        throw new Error(error.message || "Failed to submit lead");
+      }
+
+      if (!data?.success || !data?.leadId) {
+        throw new Error(data?.error || "Failed to save lead");
       }
 
       // Store lead ID for checkout
-      const newLeadId = insertedLead?.id;
-      if (newLeadId) {
-        setLeadId(newLeadId);
-        
-        // Sync to Google Sheets with NEPLĂTIT status (fire and forget)
-        supabase.functions.invoke("sync-lead-to-sheets", {
-          body: { leadId: newLeadId, status: "NEPLĂTIT" },
-        }).then(({ error: syncError }) => {
-          if (syncError) {
-            console.error("Failed to sync lead to sheets:", syncError);
-          } else {
-            console.log("Lead synced to sheets with NEPLĂTIT status");
-          }
-        });
-      }
+      setLeadId(data.leadId);
+      console.log("Lead saved successfully:", data.leadId);
 
       // Success - move to step 2
       setStep(2);
@@ -135,9 +129,10 @@ const CTAModal = () => {
           variant: "destructive" 
         });
       } else {
+        const errorMessage = error instanceof Error ? error.message : "Te rugăm să încerci din nou.";
         toast({ 
           title: "A apărut o eroare", 
-          description: "Te rugăm să încerci din nou.",
+          description: errorMessage,
           variant: "destructive" 
         });
       }
