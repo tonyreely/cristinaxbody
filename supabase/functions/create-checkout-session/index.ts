@@ -11,14 +11,20 @@ type CreateCheckoutBody = {
 };
 
 Deno.serve(async (req) => {
+  // Generate unique request ID for tracing
+  const requestId = crypto.randomUUID().slice(0, 8);
+  
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
+  console.log(`[${requestId}] create-checkout-session: start`);
+
   try {
     const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeSecretKey) {
-      return new Response(JSON.stringify({ error: "Missing Stripe secret" }), {
+      console.error(`[${requestId}] Missing STRIPE_SECRET_KEY`);
+      return new Response(JSON.stringify({ error: "Missing Stripe secret", requestId }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -26,32 +32,32 @@ Deno.serve(async (req) => {
 
     const origin = req.headers.get("origin") ?? "";
     const baseUrl = origin || "https://cristinaxbody.lovable.app";
+    console.log(`[${requestId}] origin=${origin}, baseUrl=${baseUrl}`);
 
     const body = (await req.json().catch(() => ({}))) as CreateCheckoutBody;
     const email = (body.email || "").toString().trim().toLowerCase();
     const leadId = (body.leadId || "").toString().trim();
     
+    console.log(`[${requestId}] email=${email ? "present" : "missing"}, leadId=${leadId ? leadId.slice(0, 8) + "..." : "none"}`);
+    
     if (!email) {
-      return new Response(JSON.stringify({ error: "Missing email" }), {
+      console.error(`[${requestId}] Missing email in request`);
+      return new Response(JSON.stringify({ error: "Missing email", requestId }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    // Create payment record if leadId is provided
+    // Log leadId for payment tracking
     if (leadId) {
-      const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
-      const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
-      const supabase = createClient(supabaseUrl, supabaseServiceKey);
-      
-      // We'll update with the actual session ID after creating it
-      console.log("Lead ID received for payment tracking:", leadId);
+      console.log(`[${requestId}] Lead ID received for payment tracking: ${leadId}`);
     }
 
     const params = new URLSearchParams();
     params.set("mode", "payment");
     params.set("payment_method_types[]", "card");
     params.set("customer_email", email);
+    
     // Include leadId in success URL for payment verification
     const successUrl = leadId 
       ? `${baseUrl}/thank-you?session_id={CHECKOUT_SESSION_ID}&lead_id=${leadId}`
@@ -65,6 +71,8 @@ Deno.serve(async (req) => {
     params.set("line_items[0][price_data][unit_amount]", "4700");
     params.set("line_items[0][price_data][product_data][name]", "Avans rezervare xBody (47 RON)");
 
+    console.log(`[${requestId}] Calling Stripe API...`);
+    
     const res = await fetch("https://api.stripe.com/v1/checkout/sessions", {
       method: "POST",
       headers: {
@@ -75,15 +83,28 @@ Deno.serve(async (req) => {
     });
 
     const text = await res.text();
+    
     if (!res.ok) {
-      console.error("Stripe create session failed", res.status, text);
-      return new Response(JSON.stringify({ error: "Stripe error", details: text }), {
+      console.error(`[${requestId}] Stripe error: status=${res.status}, body=${text}`);
+      // Extract Stripe error message if available
+      let stripeError = "Stripe payment error";
+      try {
+        const parsed = JSON.parse(text);
+        stripeError = parsed?.error?.message || stripeError;
+      } catch {}
+      
+      return new Response(JSON.stringify({ 
+        error: stripeError, 
+        details: text,
+        requestId 
+      }), {
         status: 502,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
     const session = JSON.parse(text) as { url?: string; id?: string };
+    console.log(`[${requestId}] Stripe session created: ${session.id}, url domain: ${session.url?.split("/")[2]}`);
     
     // Create payment record with session ID
     if (leadId && session.id) {
@@ -98,19 +119,24 @@ Deno.serve(async (req) => {
       });
       
       if (paymentError) {
-        console.error("Failed to create payment record:", paymentError);
+        console.error(`[${requestId}] Failed to create payment record:`, paymentError);
       } else {
-        console.log("Payment record created for session:", session.id);
+        console.log(`[${requestId}] Payment record created for session: ${session.id}`);
       }
     }
     
-    return new Response(JSON.stringify({ url: session.url, id: session.id }), {
+    console.log(`[${requestId}] Success - returning checkout URL`);
+    return new Response(JSON.stringify({ url: session.url, id: session.id, requestId }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
-    console.error("create-checkout-session error", e);
-    return new Response(JSON.stringify({ error: "Unexpected error" }), {
+    console.error(`[${requestId}] Unexpected error:`, e);
+    return new Response(JSON.stringify({ 
+      error: "Unexpected server error", 
+      details: e instanceof Error ? e.message : String(e),
+      requestId 
+    }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });

@@ -145,13 +145,22 @@ const CTAModal = () => {
     closeModal();
   };
 
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
   const startCheckout = async () => {
+    // Prevent double-click
+    if (isStartingCheckout) return;
+    
+    setCheckoutError(null);
+    setCheckoutUrl(null);
+    
     try {
       setIsStartingCheckout(true);
       
       // Create timeout promise (15 seconds)
-      const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error("Conexiunea durează prea mult")), 15000);
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error("Conexiunea durează prea mult. Încearcă din nou.")), 15000);
       });
       
       // Race between actual request and timeout
@@ -163,24 +172,68 @@ const CTAModal = () => {
           },
         }),
         timeoutPromise,
-      ]) as { data?: { url?: string }; error?: Error };
+      ]);
 
-      if (result.error) throw result.error;
-      if (!result.data?.url) {
+      // Extract error details from response
+      if (result.error) {
+        // Try to get more details from the error
+        const errorMsg = result.error.message || "Eroare de conectare";
+        console.error("Checkout invoke error:", result.error);
+        throw new Error(errorMsg);
+      }
+      
+      const data = result.data as { url?: string; error?: string; requestId?: string };
+      
+      // Check for backend error in response
+      if (data?.error) {
+        console.error("Backend error:", data.error, "requestId:", data.requestId);
+        throw new Error(data.error);
+      }
+      
+      if (!data?.url) {
+        console.error("No URL in response:", data);
         throw new Error("Nu am primit linkul de plată");
       }
 
-      console.log("Redirecting to Stripe:", result.data.url);
-      window.location.href = result.data.url;
+      const checkoutUrlReceived = data.url;
+      console.log("Checkout URL received:", checkoutUrlReceived);
+      
+      // Store URL for fallback
+      setCheckoutUrl(checkoutUrlReceived);
+      
+      // Try to open in new tab first (more reliable across browsers)
+      const opened = window.open(checkoutUrlReceived, "_blank", "noopener,noreferrer");
+      
+      if (opened) {
+        // Successfully opened, show fallback after short delay in case user closed it
+        setTimeout(() => {
+          setIsStartingCheckout(false);
+        }, 2000);
+      } else {
+        // Pop-up blocked or failed, redirect same page
+        console.log("New tab blocked, redirecting same page...");
+        window.location.href = checkoutUrlReceived;
+      }
     } catch (err) {
       console.error("Checkout error:", err);
       const message = err instanceof Error ? err.message : "Eroare necunoscută";
+      setCheckoutError(message);
       toast({
         title: "Nu am putut porni plata",
-        description: `${message}. Te rugăm să încerci din nou.`,
+        description: `${message}. Încearcă din nou sau folosește linkul de mai jos.`,
         variant: "destructive",
       });
       setIsStartingCheckout(false);
+    }
+  };
+
+  const copyCheckoutLink = async () => {
+    if (!checkoutUrl) return;
+    try {
+      await navigator.clipboard.writeText(checkoutUrl);
+      toast({ title: "Link copiat!", description: "Deschide-l într-un browser nou." });
+    } catch {
+      toast({ title: "Nu am putut copia", variant: "destructive" });
     }
   };
 
@@ -388,7 +441,7 @@ const CTAModal = () => {
                     </div>
 
                     {/* Stripe Payment Button */}
-                    <div className="flex justify-center py-6">
+                    <div className="flex flex-col items-center gap-3 py-6">
                       <button
                         type="button"
                         onClick={startCheckout}
@@ -397,6 +450,39 @@ const CTAModal = () => {
                       >
                         {isStartingCheckout ? "Se deschide plata..." : "Începe Transformarea"}
                       </button>
+                      
+                      {/* Fallback: Show link if checkout was attempted */}
+                      {checkoutUrl && (
+                        <div className="flex flex-col items-center gap-2 mt-2 p-3 bg-muted/50 rounded-lg">
+                          <p className="text-xs text-muted-foreground text-center">
+                            Nu s-a deschis? Folosește linkul direct:
+                          </p>
+                          <div className="flex gap-2">
+                            <a
+                              href={checkoutUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-primary underline hover:text-primary/80"
+                            >
+                              Deschide plata →
+                            </a>
+                            <button
+                              type="button"
+                              onClick={copyCheckoutLink}
+                              className="text-sm text-muted-foreground hover:text-foreground underline"
+                            >
+                              Copiază link
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* Error message with retry */}
+                      {checkoutError && !checkoutUrl && (
+                        <p className="text-sm text-destructive text-center">
+                          {checkoutError}
+                        </p>
+                      )}
                     </div>
 
                     {/* Trust Badge */}
