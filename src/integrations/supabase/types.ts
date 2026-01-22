@@ -22,6 +22,7 @@ export type Database = {
           goal: string | null
           id: string
           phone: string
+          sheet_row_id: string | null
         }
         Insert: {
           created_at?: string
@@ -30,6 +31,7 @@ export type Database = {
           goal?: string | null
           id?: string
           phone: string
+          sheet_row_id?: string | null
         }
         Update: {
           created_at?: string
@@ -38,8 +40,44 @@ export type Database = {
           goal?: string | null
           id?: string
           phone?: string
+          sheet_row_id?: string | null
         }
         Relationships: []
+      }
+      payments: {
+        Row: {
+          created_at: string | null
+          id: string
+          lead_id: string
+          paid: boolean | null
+          paid_at: string | null
+          stripe_session_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          lead_id: string
+          paid?: boolean | null
+          paid_at?: string | null
+          stripe_session_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          lead_id?: string
+          paid?: boolean | null
+          paid_at?: string | null
+          stripe_session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

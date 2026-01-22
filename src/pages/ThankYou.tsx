@@ -7,6 +7,7 @@ type VerifyResponse = {
   amount_total?: number;
   currency?: string;
   customer_email?: string | null;
+  leadId?: string | null;
 };
 
 const PURCHASE_PIXEL_ID = "863161972736074";
@@ -14,6 +15,7 @@ const PURCHASE_PIXEL_ID = "863161972736074";
 const ThankYou = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id") || "";
+  const leadIdFromUrl = searchParams.get("lead_id") || "";
 
   const [status, setStatus] = useState<
     "idle" | "verifying" | "paid" | "unpaid" | "error"
@@ -35,7 +37,7 @@ const ThankYou = () => {
         const { data, error } = await supabase.functions.invoke(
           "verify-checkout-session",
           {
-            body: { sessionId },
+            body: { sessionId, leadId: leadIdFromUrl },
           }
         );
         if (error) throw error;
@@ -62,6 +64,20 @@ const ThankYou = () => {
           console.log("Meta Pixel: Purchase fired (trackSingle)");
         }
 
+        // Sync to Google Sheets with PLĂTIT status
+        const leadIdToSync = leadIdFromUrl || payload.leadId;
+        if (leadIdToSync) {
+          supabase.functions.invoke("sync-lead-to-sheets", {
+            body: { leadId: leadIdToSync, status: "PLĂTIT" },
+          }).then(({ error: syncError }) => {
+            if (syncError) {
+              console.error("Failed to sync payment to sheets:", syncError);
+            } else {
+              console.log("Payment synced to sheets with PLĂTIT status");
+            }
+          });
+        }
+
         setStatus("paid");
       } catch (e) {
         console.error("Failed to verify checkout session", e);
@@ -70,7 +86,7 @@ const ThankYou = () => {
     };
 
     void verify();
-  }, [sessionId, trackedKey]);
+  }, [sessionId, leadIdFromUrl, trackedKey]);
 
   return (
     <main className="min-h-screen bg-background">

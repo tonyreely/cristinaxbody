@@ -1,3 +1,5 @@
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -5,6 +7,7 @@ const corsHeaders = {
 
 type VerifyBody = {
   sessionId?: string;
+  leadId?: string;
 };
 
 Deno.serve(async (req) => {
@@ -23,6 +26,8 @@ Deno.serve(async (req) => {
 
     const body = (await req.json().catch(() => ({}))) as VerifyBody;
     const sessionId = (body.sessionId || "").toString().trim();
+    const leadId = (body.leadId || "").toString().trim();
+    
     if (!sessionId) {
       return new Response(JSON.stringify({ error: "Missing sessionId" }), {
         status: 400,
@@ -58,12 +63,37 @@ Deno.serve(async (req) => {
 
     const paid = session.payment_status === "paid";
 
+    // Update payment record if paid and we have a leadId or can find by session
+    if (paid) {
+      const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+      const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+      const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+      // Update payment record
+      const { error: updateError } = await supabase
+        .from("payments")
+        .update({ paid: true, paid_at: new Date().toISOString() })
+        .eq("stripe_session_id", sessionId);
+
+      if (updateError) {
+        console.error("Failed to update payment record:", updateError);
+      } else {
+        console.log("Payment record updated as paid for session:", sessionId);
+      }
+
+      // If we have a leadId, also return it for the frontend to sync
+      if (leadId) {
+        console.log("Lead ID for sync:", leadId);
+      }
+    }
+
     return new Response(
       JSON.stringify({
         paid,
         amount_total: session.amount_total,
         currency: session.currency,
         customer_email: session.customer_details?.email ?? null,
+        leadId: leadId || null,
       }),
       {
         status: 200,
