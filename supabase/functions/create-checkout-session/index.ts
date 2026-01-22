@@ -66,15 +66,9 @@ Deno.serve(async (req) => {
     params.set("success_url", successUrl);
     params.set("cancel_url", `${baseUrl}/?canceled=1`);
 
-    // 47.00 RON deposit
+    // 47.00 RON deposit - using real Stripe price ID for better iOS Safari compatibility
+    params.set("line_items[0][price]", "price_1SZ6cLFGNkHneS3ebOWNKUZG");
     params.set("line_items[0][quantity]", "1");
-    params.set("line_items[0][price_data][currency]", "ron");
-    params.set("line_items[0][price_data][unit_amount]", "4700");
-    params.set("line_items[0][price_data][product_data][name]", "Avans rezervare xBody (47 RON)");
-    params.set(
-      "line_items[0][price_data][product_data][description]",
-      "Avansul de 47 RON se scade integral din pret (nu e o taxa suplimentara). Este confirmarea ta ca vrei sa faci o schimbare reala."
-    );
 
     console.log(`[${requestId}] Calling Stripe API...`);
     
