@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.backfill-leads-to-sheets]
 verify_jwt = false
+
+[functions.submit-lead]
+verify_jwt = false
