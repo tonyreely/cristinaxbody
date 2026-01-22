@@ -163,7 +163,7 @@ const CTAModal = () => {
     // Direct Payment Link navigation - maximum compatibility, no backend calls
     // client_reference_id links the payment to the leadId in Stripe
     // prefilled_email pre-fills the customer email in checkout
-    const paymentLinkBase = "https://buy.stripe.com/eVq6rbfz1cjj5hK8ww";
+    const paymentLinkBase = "https://buy.stripe.com/dRmbJ1guFeYFg794ABcMM00";
     const checkoutUrl = `${paymentLinkBase}?client_reference_id=${leadId}&prefilled_email=${encodeURIComponent(formData.email.trim().toLowerCase())}`;
     
     console.log("Navigating to Stripe Payment Link with leadId:", leadId);
@@ -388,7 +388,7 @@ const CTAModal = () => {
                       
                       {/* Backup payment link if redirect fails */}
                       <a
-                        href="https://buy.stripe.com/eVq6rbfz1cjj5hK8ww"
+                        href="https://buy.stripe.com/dRmbJ1guFeYFg794ABcMM00"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-muted-foreground hover:text-primary underline mt-2"
