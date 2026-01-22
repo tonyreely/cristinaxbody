@@ -50,7 +50,7 @@ Deno.serve(async (req) => {
 
     const params = new URLSearchParams();
     params.set("mode", "payment");
-    params.set("payment_method_types[]", "card");
+    params.set("automatic_payment_methods[enabled]", "true");
     params.set("customer_email", email);
     // Include leadId in success URL for payment verification
     const successUrl = leadId 

@@ -148,27 +148,36 @@ const CTAModal = () => {
   const startCheckout = async () => {
     try {
       setIsStartingCheckout(true);
-      const { data, error } = await supabase.functions.invoke(
-        "create-checkout-session",
-        {
+      
+      // Create timeout promise (15 seconds)
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("Conexiunea durează prea mult")), 15000);
+      });
+      
+      // Race between actual request and timeout
+      const result = await Promise.race([
+        supabase.functions.invoke("create-checkout-session", {
           body: {
             email: formData.email,
             leadId: leadId,
           },
-        }
-      );
+        }),
+        timeoutPromise,
+      ]) as { data?: { url?: string }; error?: Error };
 
-      if (error) throw error;
-      if (!data?.url) {
-        throw new Error("Missing Stripe Checkout URL");
+      if (result.error) throw result.error;
+      if (!result.data?.url) {
+        throw new Error("Nu am primit linkul de plată");
       }
 
-      window.location.href = data.url as string;
+      console.log("Redirecting to Stripe:", result.data.url);
+      window.location.href = result.data.url;
     } catch (err) {
-      console.error("Failed to start checkout", err);
+      console.error("Checkout error:", err);
+      const message = err instanceof Error ? err.message : "Eroare necunoscută";
       toast({
         title: "Nu am putut porni plata",
-        description: "Te rugăm să încerci din nou.",
+        description: `${message}. Te rugăm să încerci din nou.`,
         variant: "destructive",
       });
       setIsStartingCheckout(false);
