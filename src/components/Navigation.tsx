@@ -47,20 +47,13 @@ const Navigation = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <div onClickCapture={() => {
-              if ((window as any).fbq) {
-                (window as any).fbq('track', 'InitiateCheckout');
-              }
-              console.log('Pixel fired via Capture');
-            }}>
-              <Button
-                variant="gold"
-                size="default"
-                onClick={() => scrollToSection("consultation")}
-              >
-                VREAU SĂ ÎNCEP TRANSFORMAREA
-              </Button>
-            </div>
+            <Button
+              variant="gold"
+              size="default"
+              onClick={() => scrollToSection("consultation")}
+            >
+              VREAU SĂ ÎNCEP TRANSFORMAREA
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -77,21 +70,14 @@ const Navigation = () => {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4">
-            <div onClickCapture={() => {
-              if ((window as any).fbq) {
-                (window as any).fbq('track', 'InitiateCheckout');
-              }
-              console.log('Pixel fired via Capture');
-            }}>
-              <Button
-                variant="gold"
-                size="lg"
-                className="w-full"
-                onClick={() => scrollToSection("consultation")}
-              >
-                VREAU SĂ ÎNCEP TRANSFORMAREA
-              </Button>
-            </div>
+            <Button
+              variant="gold"
+              size="lg"
+              className="w-full"
+              onClick={() => scrollToSection("consultation")}
+            >
+              VREAU SĂ ÎNCEP TRANSFORMAREA
+            </Button>
           </div>
         )}
       </div>
