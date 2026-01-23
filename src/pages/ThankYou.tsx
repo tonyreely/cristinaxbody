@@ -48,20 +48,18 @@ const ThankYou = () => {
           return;
         }
 
-        // Fire Purchase ONLY for pixel 863...
+        // Fire Purchase event for Meta Pixel
         const alreadyTracked = trackedKey
           ? window.localStorage.getItem(trackedKey) === "true"
           : false;
 
         if (!alreadyTracked && (window as any).fbq) {
-          (window as any).fbq(
-            "trackSingle",
-            PURCHASE_PIXEL_ID,
-            "Purchase",
-            { value: 47.0, currency: "RON" }
-          );
+          (window as any).fbq('track', 'Purchase', {
+            currency: "RON",
+            value: 47.00
+          });
           if (trackedKey) window.localStorage.setItem(trackedKey, "true");
-          console.log("Meta Pixel: Purchase fired (trackSingle)");
+          console.log("Meta Pixel: Purchase event fired");
         }
 
         // Sync to Google Sheets with PLĂTIT status
