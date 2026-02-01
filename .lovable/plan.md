@@ -1,37 +1,37 @@
 
 
-## Plan: Adăugare Microsoft Clarity Tracking Code
+## Plan: Actualizare lună din Ianuarie în Februarie
 
-### Ce voi face
-Voi adăuga codul Microsoft Clarity în secțiunea `<head>` a fișierului `index.html`, imediat după codul Meta Pixel existent.
+### Modificări necesare
 
-### Modificare exactă
-
-**Fișier:** `index.html`
-
-**Locație:** După linia 44 (după `<!-- End Meta Pixel Code -->`)
-
-**Cod de adăugat:**
-```html
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "v8k5ejqeye");
-</script>
-<!-- End Microsoft Clarity -->
+#### 1. HeroSection.tsx (linia 108)
+**De la:**
+```
+Locuri limitate disponibile pentru luna Ianuarie.
+```
+**La:**
+```
+Locuri limitate disponibile pentru luna Februarie.
 ```
 
-### Ce NU voi atinge
-- Meta Pixel code - rămâne intact
-- Meta tags - rămân intacte
-- Fonts - rămân intacte
-- Favicon - rămâne intact
-- Body și noscript fallbacks - rămân intacte
-- Toate celelalte fișiere din proiect
+#### 2. CTAModal.tsx (linia 208)
+**De la:**
+```
+Mai ai un singur pas pentru a-ți securiza locul în calendar în Ianuarie.
+```
+**La:**
+```
+Mai ai un singur pas pentru a-ți securiza locul în calendar în Februarie.
+```
 
-### Rezultat
-Microsoft Clarity va începe să colecteze date de heatmap și session recordings pentru site-ul tău.
+---
+
+### Fișiere modificate
+- `src/components/HeroSection.tsx` - 1 modificare
+- `src/components/CTAModal.tsx` - 1 modificare
+
+### Ce NU se va atinge
+- Toate celelalte fișiere
+- Funcționalitatea existentă
+- Codul Microsoft Clarity adăugat recent
 
