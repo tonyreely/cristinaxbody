@@ -384,8 +384,13 @@ const CTAModal = () => {
                       </a>
                     </div>
 
+                    {/* Important Note */}
+                    <p className="text-center text-xs text-amber-400/90 font-medium mt-4">
+                      ⏳ Prima ședință trebuie programată în maximum 10 zile de la achitare.
+                    </p>
+
                     {/* Trust Badge */}
-                    <p className="text-center text-xs text-muted-foreground mt-4">
+                    <p className="text-center text-xs text-muted-foreground mt-2">
                       🔒 Plată securizată prin Stripe. Datele tale sunt protejate.
                     </p>
                   </motion.div>
