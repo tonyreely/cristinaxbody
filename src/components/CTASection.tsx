@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useCTAModal } from "@/contexts/CTAModalContext";
+import { Link } from "react-router-dom";
 
 const CTASection = () => {
   const { openModal } = useCTAModal();
@@ -57,12 +58,12 @@ const CTASection = () => {
             Privacy Policy
           </a>{" "}
           |{" "}
-          <a
-            href="#"
+          <Link
+            to="/termeni-si-conditii"
             className="hover:text-primary underline transition-colors"
           >
-            Terms of Service
-          </a>
+            Termeni și Condiții
+          </Link>
         </motion.p>
       </div>
     </section>
