@@ -118,6 +118,16 @@ const CTAModal = () => {
       setLeadId(data.leadId);
       console.log("Lead saved successfully:", data.leadId);
 
+      // Fire Meta Pixel Lead event
+      if ((window as any).fbq) {
+        (window as any).fbq('track', 'Lead', {
+          content_name: validatedData.obiectiv,
+          value: 47,
+          currency: 'RON'
+        });
+        console.log('Meta Pixel: Lead event fired');
+      }
+
       // Success - move to step 2
       setStep(2);
     } catch (error) {
