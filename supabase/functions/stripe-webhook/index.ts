@@ -91,6 +91,33 @@ serve(async (req) => {
 
       console.log("Payment recorded successfully:", paymentData);
 
+      // Get lead info for email
+      const { data: leadData } = await supabase
+        .from("leads")
+        .select("first_name, email")
+        .eq("id", leadId)
+        .single();
+
+      // Send payment confirmation email
+      if (leadData?.email) {
+        try {
+          const emailResponse = await supabase.functions.invoke("send-transactional-email", {
+            body: {
+              templateName: "payment-confirmation",
+              recipientEmail: leadData.email,
+              idempotencyKey: `payment-confirm-${session.id}`,
+              templateData: {
+                firstName: leadData.first_name,
+                email: leadData.email,
+              },
+            },
+          });
+          console.log("Payment confirmation email sent:", emailResponse);
+        } catch (emailError) {
+          console.error("Error sending confirmation email:", emailError);
+        }
+      }
+
       // Trigger sync to Google Sheets
       try {
         const sheetsResponse = await fetch(
@@ -107,7 +134,6 @@ serve(async (req) => {
         console.log("Sheets sync response:", sheetsResponse.status);
       } catch (sheetsError) {
         console.error("Error syncing to sheets:", sheetsError);
-        // Non-critical, don't fail the webhook
       }
     } else {
       console.log("Skipping payment record - no leadId or not paid:", { leadId, paymentStatus });
