@@ -3,13 +3,8 @@ import { renderAsync } from 'npm:@react-email/components@0.0.22'
 import { TEMPLATES } from '../_shared/transactional-email-templates/registry.ts'
 
 const SITE_NAME = "cristinaxbody"
-// IMPORTANT: For real sends from your own domain, you must verify
-// `bodytoneems.ro` in Resend (Domains → Add Domain) and add the
-// TXT/MX records they provide to cPanel Zone Editor.
-// Until then, sends will use the Resend test sender below.
-const FROM_EMAIL = `${SITE_NAME} <onboarding@resend.dev>`
-// Once domain is verified in Resend, switch to:
-// const FROM_EMAIL = `${SITE_NAME} <noreply@bodytoneems.ro>`
+// Domain `bodytoneems.ro` verified in Resend.
+const FROM_EMAIL = `${SITE_NAME} <noreply@bodytoneems.ro>`
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
