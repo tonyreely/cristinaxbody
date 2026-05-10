@@ -105,7 +105,7 @@ const HeroSection = () => {
             VREAU SĂ ÎNCEP TRANSFORMAREA
           </Button>
           <p className="mt-4 text-white text-sm">
-            Locuri limitate disponibile pentru luna Aprilie.
+            Locuri limitate disponibile pentru luna Mai.
           </p>
         </motion.div>
 
