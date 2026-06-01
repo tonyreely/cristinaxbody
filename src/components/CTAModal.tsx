@@ -205,7 +205,7 @@ const CTAModal = () => {
                         🎉 Excelent! Ai blocat Pachetul <span className="text-primary">"3+1 GRATIS"</span> la doar <span className="text-primary">347 RON</span> <span className="line-through text-muted-foreground text-lg">436 RON</span>
                       </h3>
                       <p className="text-muted-foreground text-sm">
-                        Mai ai un singur pas pentru a-ți securiza locul în calendar în Mai.
+                        Mai ai un singur pas pentru a-ți securiza locul în calendar în Iunie.
                       </p>
                     </div>
 
