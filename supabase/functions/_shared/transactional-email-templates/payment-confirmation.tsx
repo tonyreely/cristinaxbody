@@ -38,6 +38,12 @@ const PaymentConfirmationEmail = ({ firstName, email }: PaymentConfirmationProps
           </Text>
         </Section>
 
+        <Section style={highlightBox}>
+          <Text style={highlightText}>
+            ⏳ Prima ședință trebuie programată în maximum <strong>10 zile</strong> de la achitare.
+          </Text>
+        </Section>
+
         <Text style={text}>
           Dacă ai întrebări sau ai nevoie de informații suplimentare, ne poți contacta direct:
         </Text>
