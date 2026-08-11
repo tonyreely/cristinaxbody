@@ -82,9 +82,11 @@ const TermsAndConditions = () => {
               5. Programări și Anulări
             </h2>
             <p>
-              Clientul trebuie să anuleze sau reprogrameze o ședință cu minimum
-              24 de ore înainte. Ședințele neanulate în termenul menționat se
-              consideră efectuate și nu pot fi recuperate.
+              Ședințele se fac exclusiv pe baza de programare, în funcție de
+              disponibilitatea confirmată de Prestator. Clientul trebuie să
+              anuleze sau reprogrameze o ședință cu minimum 24 de ore înainte.
+              Ședințele neanulate în termenul menționat se consideră efectuate
+              și nu pot fi recuperate.
             </p>
           </section>
 
