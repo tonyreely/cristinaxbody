@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import ThankYou from "./pages/ThankYou";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import Unsubscribe from "./pages/Unsubscribe";
+import Prezentare from "./pages/Prezentare";
 import { CTAModalProvider } from "@/contexts/CTAModalContext";
 import CTAModal from "@/components/CTAModal";
 
