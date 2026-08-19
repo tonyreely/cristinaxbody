@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import ThankYou from "./pages/ThankYou";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import Unsubscribe from "./pages/Unsubscribe";
+import Prezentare from "./pages/Prezentare";
 import { CTAModalProvider } from "@/contexts/CTAModalContext";
 import CTAModal from "@/components/CTAModal";
 
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/termeni-si-conditii" element={<TermsAndConditions />} />
             <Route path="/unsubscribe" element={<Unsubscribe />} />
+            <Route path="/prezentare" element={<Prezentare />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
