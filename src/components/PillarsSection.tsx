@@ -30,7 +30,7 @@ const pillars = [
     title: "Intimitate Totală",
     subtitle: "Sanctuarul tău Privat",
     paragraphs: [
-      "Spune adio sălilor aglomerate și privirilor indiscrete. Studiourile noastre funcționează în regim privat. Ești doar tu și antrenorul tău, într-un mediu exclusivist unde focusul este 100% pe transformarea ta.",
+      "Spune adio sălilor aglomerate și privirilor indiscrete. Studiourile noastre funcționează în regim privat. Ești doar tu și antrenorul tău, într-un mediu exclusivist unde focusul este 100% pe transformarea ta. Primești costum de antrenament din bumbac, igienizat după fiecare ședință.",
     ],
   },
 ];
