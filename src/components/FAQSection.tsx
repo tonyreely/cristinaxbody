@@ -22,6 +22,11 @@ const faqs = [
     answer:
       "Da. Tehnologia EMS activează 90% din musculatură simultan, comparativ cu doar 40% la sala tradițională. 20 de minute de EMS echivalează cu 90 de minute de antrenament clasic.",
   },
+  {
+    question: "Ce îmbrac la antrenament? Costumul EMS e igienic?",
+    answer:
+      "Nu trebuie să aduci nimic special. Primești de la noi un costum de antrenament din bumbac, curat și igienizat după fiecare utilizare, care se poartă sub vesta EMS. Bumbacul e moale, lasă pielea să respire și este plăcut de purtat pe toată durata ședinței.",
+  },
 ];
 
 const FAQSection = () => {
