@@ -83,7 +83,6 @@ const included = [
   "Consiliere nutrițională",
   "Analiză corporală și măsurători",
   "Monitorizarea rezultatelor pe toată perioada",
-  "Costum de antrenament din bumbac, igienizat după fiecare ședință",
   "Asigurarea condițiilor de igienă necesare",
 ];
 
